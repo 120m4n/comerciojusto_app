@@ -26,146 +26,111 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
-
-  <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
-  <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
-  
-
-  <script src="lib/onsen/js/angular/angular.js"></script>    
-  <script src="lib/onsen/js/onsenui.js"></script>    
-
-        
+		<!--  Para el onsen  -->
+		<link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
+		<link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
+		<script src="lib/onsen/js/angular/angular.js"></script>    
+		<script src="lib/onsen/js/onsenui.js"></script>    
+		<!--  Para el mapa  -->
+		<link rel="stylesheet" href="css/leaflet.css" />
+		<script src="js/leaflet.js"></script>
+		
+		<script src="js/jquery-1.11.1.min.js"></script>
+	
+		
+		<style>
+			#map { width: 100%; height: 490px; }
+		</style>
     </head>
     <body>
+		<ons-sliding-menu
+						  above-page="inicio.html"
+						  behind-page="menu.html"       
+						  side="left"
+						  max-slide-distance="250px"
+						  var="menu">
+		</ons-sliding-menu>
+
+		<ons-template id="inicio.html">
+		  <ons-page>
+			<ons-toolbar>
+			  <div class="left">
+				<ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+			  </div>
+			  <div class="center">Inicio/Hasiera</div>
+			  <div class="right">
+				  <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon>
+			  </div>
+			</ons-toolbar>
+				<div id="map"></div>		
+				<div id="deviceready" class="blink">
+					<p class="event listening">Iniciando....</p>
+					<p class="event received">App lista</p>
+				</div>
+				
+		  </ons-page>
+		</ons-template>
+
+		<ons-template id="listado.html">
+		  <ons-page>
+			<ons-toolbar>
+			  <div class="left">
+				<ons-toolbar-button onclick="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+			  </div>
+			  <div class="center">Listado</div>
+			</ons-toolbar>
+			<h2>Listado de comercios</h2>
+			<ul id="listado_comercios">
+				
+			</ul>
+			
+		  </ons-page>
+		</ons-template>
+
+
+		<ons-template id="mapa.html">
+		  <ons-page>
+			<ons-toolbar>
+			  <div class="left">
+				<ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+			  </div>
+			</ons-toolbar>
+			Mapa
+			
+		  </ons-page>
+		</ons-template>
+
+		<ons-template id="about.html">
+		  <ons-page>
+			<ons-toolbar>
+			  <div class="left">
+				<ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+			  </div>
+			  <div class="center">Acerda de</div>
+			</ons-toolbar>
+			Información de la licencia, quien la hecho, etc
+		  </ons-page>
+		</ons-template>
+
+
+		<ons-template id="menu.html">
+		  <ons-list>
+			<ons-list-item modifier="chevron" onclick="menu.setAbovePage('inicio.html', {closeMenu: true})">
+			  Inicio
+			</ons-list-item>
+			<ons-list-item modifier="chevron" onclick="menu.setAbovePage('listado.html', {closeMenu: true})">
+			  Listado
+			</ons-list-item>
 <!--
-        <div class="app">
-            <h1>Comercio Justo</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Iniciando....</p>
-                <p class="event received">Listo</p>
-            </div>
-        </div>
+			<ons-list-item modifier="chevron" onclick="menu.setAbovePage('mapa.html', {closeMenu: true})">
+			  Mapa
+			</ons-list-item>
 -->
-
-
-<ons-sliding-menu
-                  above-page="inicio.html"
-                  behind-page="menu.html"       
-                  side="left"
-                  max-slide-distance="250px"
-                  var="menu">
-</ons-sliding-menu>
-
-<ons-template id="inicio.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
-      </div>
-      <div class="center">Inicio/Hasiera</div>
-    </ons-toolbar>
-	<h2>Comercio Justo</h2>
-       
-                <p class="event listening">Iniciando....</p>
-                <p class="event received">Listo</p>
-       
-    
-  </ons-page>
-</ons-template>
-
-
-<ons-template id="listado.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
-      </div>
-      <div class="center">Listado</div>
-    </ons-toolbar>
-	<h2>Listado de comercios</h2>
-	<ul>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-		<li>Comercio</li>
-	</ul>
-    
-  </ons-page>
-</ons-template>
-
-
-<ons-template id="mapa.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
-      </div>
-      <div class="center">Mapa</div>
-    </ons-toolbar>
-    
-  </ons-page>
-</ons-template>
-
-<ons-template id="about.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
-      </div>
-      <div class="center">Acerda de</div>
-    </ons-toolbar>
-    Información de la licencia, quien la hecho, etc
-  </ons-page>
-</ons-template>
-
-
-<ons-template id="menu.html">
-  <ons-list>
-    <ons-list-item modifier="chevron" onclick="menu.setAbovePage('inici.html', {closeMenu: true})">
-      Inicio
-    </ons-list-item>
-    <ons-list-item modifier="chevron" onclick="menu.setAbovePage('listado.html', {closeMenu: true})">
-      Listado
-    </ons-list-item>
-    <ons-list-item modifier="chevron" onclick="menu.setAbovePage('mapa.html', {closeMenu: true})">
-      Mapa
-    </ons-list-item>
-    <ons-list-item modifier="chevron" onclick="menu.setAbovePage('about.html', {closeMenu: true})">
-      Acerca de
-    </ons-list-item>
-  </ons-list>
-</ons-template>
+			<ons-list-item modifier="chevron" onclick="menu.setAbovePage('about.html', {closeMenu: true})">
+			  Acerca de
+			</ons-list-item>
+		  </ons-list>
+		</ons-template>
 
 
 

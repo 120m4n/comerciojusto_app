@@ -3,10 +3,10 @@
     <preference name="loglevel" value="DEBUG" />
     <name>Comerciojusto</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Aplicación para las tiendas de Comercio Justo en Vitoria/Gasteiz
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="info@etxea.net" href="http://www.etxea.net">
+        Etxea Soluciones TIC
     </author>
     <content src="index.html" />
     <access origin="*" />

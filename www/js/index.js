@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -34,11 +35,39 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 		
+		app.initializeLista();
+		//Iniciamos ons
+		console.log("Iniciamos ONS");
 		ons.bootstrap();
+		ons.ready(function() {
+			console.log("ONS listo");
+			app.initializeMap();
+		});
+		
         app.receivedEvent('deviceready');
+        
     },
+    
+	initializeMap: function () {
+		console.log("Iniciamos el mapa");
+		map = new L.Map('map');
+		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		var osmAttrib = 'Map data © OpenStreetMap contributors';
+		var osm = new L.TileLayer(osmUrl, { attribution: osmAttrib });
+		map.setView(new L.LatLng(42.847363,-2.6734835), 14);
+		map.addLayer(osm);
+		console.log("Mapa Iniciado");
+	},
+	initializeLista: function() {
+		console.log("Cargando lista comercios");
+		
+		for (i = 0; i < 50; i++) {
+			$("#listado_comercios").append('<li>'+i+'<li>');
+		}
+	},
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+		
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -47,7 +76,12 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-    }
+    },
+    refreshDb: function() {
+		alert("Vamos a refrescar la BBDD");
+		console.log("Refresh DB");
+		
+	}
 };
 
 app.initialize();
