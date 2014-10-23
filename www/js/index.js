@@ -40,29 +40,88 @@ var app = {
 		console.log("Iniciamos ONS");
 		ons.bootstrap();
 		ons.ready(function() {
+			//Primera inicialización
+			//app.initializeMap();
+			$(document.body).on('pageinit', 'mapa.html', function() {
+				console.log("Somos mapa.html");
+				app.initializeMap();
+			})
+			//~ menu.on('postclose', function() {
+				//~ console.log("Menu page is closed");
+				//~ app.initializeMap();
+			//~ });
 			console.log("ONS listo");
-			app.initializeMap();
+			
+			//Cambiamos el height del mapa
+			app.navi.on("postpush", app.postPushEvent);
 		});
 		
         app.receivedEvent('deviceready');
         
     },
-    
+    postPushEvent: function() {
+		console.log("somos post push");
+		var page = app.navi.getCurrentPage();
+		//~ console.log(page);
+		//~ console.log(page.options);
+		//~ console.log(page.options.mapa);
+		if (page.options.mapa) {
+			app.initializeMap();
+		}
+		
+	},
 	initializeMap: function () {
 		console.log("Iniciamos el mapa");
-		map = new L.Map('map');
+		alto = $(window).height()
+		alto2 = windowHeight = screen.height; 
+		console.log("Alto ventana: "+alto+" "+alto2);
+		$("#map").height(alto);
+		console.log("Redimensionado listo");
+		app.map = new L.Map('map');
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		var osmAttrib = 'Map data © OpenStreetMap contributors';
 		var osm = new L.TileLayer(osmUrl, { attribution: osmAttrib });
-		map.setView(new L.LatLng(42.847363,-2.6734835), 14);
-		map.addLayer(osm);
+		app.map.setView(new L.LatLng(42.847363,-2.6734835), 14);
+		app.map.addLayer(osm);
 		console.log("Mapa Iniciado");
 	},
+    buscame_onSuccess: function(position) {
+        console.log("Te pillé");
+        console.log('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n');
+        //var map = new L.Map('map');
+        console.log("Centremonos");
+            
+        app.map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), 16);
+  
+        console.log("Centrado");
+    },
+     
+
+    // onError Callback receives a PositionError object
+    //
+    buscame_onError: function(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    },
+
+    buscame: function() {
+        console.log("Vamos a buscar la posicion");
+        navigator.geolocation.getCurrentPosition(this.buscame_onSuccess, this.buscame_onError);
+    },
+    
 	initializeLista: function() {
 		console.log("Cargando lista comercios");
 		
 		for (i = 0; i < 50; i++) {
-			$("#listado_comercios").append('<li>'+i+'<li>');
+			//~ console.log("Añadimos el comercio: "+i);
+			$("#listado_comercios").append('<ons-list-item>Comercio '+i+'</ons-list-item>');
 		}
 	},
     // Update DOM on a Received Event
@@ -76,6 +135,10 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        if(id="deviceready") {
+			//~ $("#splash").setAttribute('style', 'display:none;');;
+			console.log("listo, quitamos el splash");
+		}
     },
     refreshDb: function() {
 		alert("Vamos a refrescar la BBDD");
