@@ -35,7 +35,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 		
-		app.initializeLista();
+		//~ app.initializeLista();
 		//Iniciamos ons
 		console.log("Iniciamos ONS");
 		ons.bootstrap();
@@ -124,27 +124,62 @@ var app = {
 			$("#listado_comercios").append('<ons-list-item>Comercio '+i+'</ons-list-item>');
 		}
 	},
+	
+	refrescarLista: function(data) {
+		console.log("Cargando lista comercios");
+		$.each( data.comercios, function( i, item ) {
+			console.log("Añadimos el comercio: "+i);
+			$("#listado_comercios").append('<ons-list-item>Comercio '+item.nombre+'</ons-list-item>');
+		});
+		console.log("Terminado refrescarLista");
+	},
+	
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-		
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
         if(id="deviceready") {
-			//~ $("#splash").setAttribute('style', 'display:none;');;
+			$("#splash").hide();
 			console.log("listo, quitamos el splash");
 		}
     },
     refreshDb: function() {
-		alert("Vamos a refrescar la BBDD");
-		console.log("Refresh DB");
 		
-	}
+		console.log("Refresh DB");
+		console.log("Cargamos el JSON del server");
+		var jqxhr = $.getJSON("http://etxea.net/medicus/comercios.json", 
+			function(data) {
+				console.log( "success" );
+				app.refrescarLista(data);
+			})
+
+			.fail(function(jqxhr, textStatus, error) {
+			console.log( "error" );
+			var err = textStatus + ", " + error;
+			console.log( "Request Failed: " + err );
+			})
+		console.log("Terminado checkUpdates");
+		
+	},
+	checkUpdates: function() {
+		console.log("Cargamos el JSON del server");
+		var jqxhr = $.getJSON("http://etxea.net/medicus/about.json", 
+			function(data) {
+				console.log( "success" );
+				console.log(data);
+				console.log(data.bbdd.last);
+				console.log(data.app.last);
+				$("#bbdd_last").text(data.bbdd.last);
+				$("#app_last").text(data.app.last);
+			})
+
+			.fail(function(jqxhr, textStatus, error) {
+			console.log( "error" );
+			var err = textStatus + ", " + error;
+			console.log( "Request Failed: " + err );
+			})
+		console.log("Terminado checkUpdates");
+	},
+	
 };
 
 app.initialize();

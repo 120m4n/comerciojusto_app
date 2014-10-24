@@ -39,7 +39,8 @@
 	
 		
 		<style>
-			#map { width: 100%; height: 490px; }
+			#map { width: 100%; height: 490px; };
+			#splash { width: 100%; height: 2500px; }
 		</style>
     </head>
     <body>
@@ -50,12 +51,14 @@
       <div class="center">Comercio Justo</div>
     </ons-toolbar>
 		
-		
+		<div id="splash">
+			&nbsp;&nbsp;
+		</div>
 		<ons-row>
 		  <ons-col>
 			  <div style="text-align: center" >
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('listado.html');">
-					  <ons-icon icon="fa-list" size="64px"></ons-icon>
+					  <ons-icon icon="fa-list" size="4x"></ons-icon>
 				  </ons-button>
 			  
 			  </div>
@@ -85,15 +88,7 @@
 				  </ons-button>
 				  
 		  </ons-col>
-		</ons-row>
-		<br />
-		
-			<div id="deviceready" class="blink">
-				<p class="event listening center">
-					<ons-icon icon="ion-looping" size="16px" fixed-width="false" ></ons-icon>Iniciando....</p>
-				<p class="event received center">App lista</p>
-			</div>
-		
+		</ons-row>		
 	</ons-page>
 </ons-navigator>
 		  
@@ -104,6 +99,7 @@
 		<ons-toolbar-button onclick="app.navi.popPage('listado.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
 	  </div>
 	  <div class="center">Listado</div>
+	  <div class="right"><ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon></div>
 	</ons-toolbar>
 	
 	<ons-list id="listado_comercios" >
@@ -146,8 +142,12 @@
 	</ons-toolbar>
 	<ons-list>
 	  <ons-list-header>Opciones</ons-list-header>
-	  <ons-list-item>Versión BBDD: <span id="version_bbdd">0.0</span> &nbsp;&nbsp; <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon> </ons-list-item>
-	  <ons-list-item>Version Aplicación 0.1</ons-list-item>
+	  <ons-list-item>Versión BBDD: <span id="bbdd_version">0.0</span> &nbsp;&nbsp; </ons-list-item>
+	  <ons-list-item>Ultima Versión BBDD: <span id="bbdd_last">0.0</span> &nbsp;&nbsp; <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon> </ons-list-item>
+	  <ons-list-item>Version Aplicación <span id="app_version">0.0</span></ons-list-item>
+	  <ons-list-item>Ultima Version Aplicación <span id="app_last">0.0</span></ons-list-item>
+	  <ons-list-item>Comprobar actualizaciones <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.checkUpdates()"></ons-icon></ons-list-item>
+	  
 	</ons-list>
 	
 	
