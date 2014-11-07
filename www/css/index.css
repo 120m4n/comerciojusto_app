@@ -24,7 +24,7 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
+    background-color:#E6EBE7;
     background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
@@ -70,6 +70,7 @@ body {
 }
 
 h1 {
+    color: #6CB7C5;
     font-size:24px;
     font-weight:normal;
     margin:0px;
@@ -112,4 +113,57 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+/* Personalización de onsense */
+.page {
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 17px;
+  background-color: #E6EBE7;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: visible;
+  font-size: 17px;
+  color: #436580;
+}
+.navigation-bar {
+	background-color: #436580;
+	color: #6CB7C5;
+}
+.navigation-bar__title {
+	color: #6CB7C5;
+}
+
+#splash {
+	position: absolute;
+	z-index: 100000;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	width: 100%;
+	height: 10000px;
+}
+
+
+#map { 
+	width: 100%; 
+	height: 490px; 
+}
+.desktop_icon {
+	color: #436580;
+}
+.button--light {
+ border: 0px;
+ }
+
+#select_categorias {
+	width: 100%;
+	color: #436580;
+	background-color: #E6EBE7;
 }

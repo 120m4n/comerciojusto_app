@@ -24,7 +24,7 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
         <title>Hello World</title>
 		<!--  Para el onsen  -->
 		<link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
@@ -34,14 +34,11 @@
 		<!--  Para el mapa  -->
 		<link rel="stylesheet" href="css/leaflet.css" />
 		<script src="js/leaflet.js"></script>
-		
+		<!-- JQuery -->
 		<script src="js/jquery-1.11.1.min.js"></script>
-	
+		<!-- El estilo -->
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
 		
-		<style>
-			#map { width: 100%; height: 490px; };
-			#splash { width: 100%; height: 2500px; }
-		</style>
     </head>
     <body>
 		
@@ -52,43 +49,46 @@
     </ons-toolbar>
 		
 		<div id="splash">
-			&nbsp;&nbsp;
+			Somos el splash...
 		</div>
+		<br />
+		
 		<ons-row>
 		  <ons-col>
-			  <div style="text-align: center" >
+			  <div style="text-align: center" class="desktop_icon" >
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('listado.html');">
-					  <ons-icon icon="fa-list" size="4x"></ons-icon>
+					  <ons-icon class="desktop_icon" icon="fa-list" size="4x"></ons-icon>
 				  </ons-button>
-			  
+				<br/>Listado
 			  </div>
 		  </ons-col>
 		  <ons-col>
-			  <div style="text-align: center" >
+			  <div style="text-align: center" class="desktop_icon" >
 				   <ons-button modifier="light" ng-click="app.navi.pushPage('mapa.html',{ mapa: 'True'});">
-					  <ons-icon icon="fa-map-marker" size="64px"></ons-icon>
+					  <ons-icon class="desktop_icon" icon="fa-map-marker" size="64px"></ons-icon>
 				  </ons-button>
-			  
+				<br/>Mapa
 			  </div>
 		  </ons-col>
-		</ons-row>		
+		</ons-row>
+		<br />		
 		<ons-row>
 		  <ons-col>
-			  <div style="text-align: center" >
+			  <div style="text-align: center" class="desktop_icon" >
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('about.html');">
-					  <ons-icon icon="fa-life-ring" size="64px"></ons-icon>
+					  <ons-icon class="desktop_icon" icon="fa-life-ring" size="64px"></ons-icon>
 				  </ons-button>
-				
+				<br/> Ayuda
 			  </div>
 		  </ons-col>
 		  <ons-col>
-			  <div style="text-align: center" >
+			  <div style="text-align: center" class="desktop_icon" >
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('settings.html');">
-					  <ons-icon icon="fa-sliders" size="64px"></ons-icon>
+					  <ons-icon class="desktop_icon" icon="fa-sliders" size="64px"></ons-icon>
 				  </ons-button>
-				  
+				<br/>Ajustes  
 		  </ons-col>
-		</ons-row>		
+		</ons-row>			
 	</ons-page>
 </ons-navigator>
 		  
@@ -101,9 +101,28 @@
 	  <div class="center">Listado</div>
 	  <div class="right"><ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon></div>
 	</ons-toolbar>
+	 <select id="select_categorias">
+		<option value="todos">Todos</option>
+		<option value="alimentacion">Alimentación</option>
+		<option value="ropa">Ropa</option>
+		<option value="artesania">Artesania</option>
+		<option value="bar">Restarurantes y bares</option>
+		<option value="limpieza">Limpieza</option>
+		<option value="mercado">Ferias y mercados</option>
+		<option value="oficina">Material de oficina</option>
+		<option value="otros">Otros</option>
+	</select>
+	<div id="checkbox_etiquetas">
+		<input value="tag1" type="checkbox" >Local</input>
+		<input value="tag2" type="checkbox" >Ecológico</input>
+		<input value="tag3" type="checkbox" >Comercio Justo</input>
+		<input value="tag4" type="checkbox" >Segunda Mano</input>
+		<input value="tag5" type="checkbox" >reparar/Reciclar</input>
+		<input value="tag6" type="checkbox" >Mujer</input>
+	</div> 
 	
 	<ons-list id="listado_comercios" >
-	  <ons-list-header>Comercios</ons-list-header>
+	  <ons-list-header>Listado de Comercios</ons-list-header>
 	  
 	</ons-list>
 

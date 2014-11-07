@@ -16,11 +16,103 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+ 
+var bbdd = {
+	
+	initialize: function() {
+		console.log("Abrimos la BBDD");
+		bbdd.db = window.openDatabase("comercios", "0.1", "Comercios", 100000);
+		//~ console.log("DB abierta. Creamos las tablas");
+		//~ bbdd.db.transaction(bbdd.createDB, bbdd.errorCB, bbdd.successCB);
+		console.log("Miramos si la tabla existe o hay que crearla");
+		bbdd.db.transaction(bbdd.checkDB, bbdd.errorCB, bbdd.successCB);
+	},
+	
+	createBD: function() {
+		bbdd.db.transaction(function(tx){
+			//~ tx.executeSql('DROP TABLE IF EXISTS DEMO');
+			tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id INTEGER PRIMARY KEY, data)');
+			bbdd.populateDB();
+		});
+	},
+	// Populate the database 
+    populateDB: function () {
+        console.log("Añadimos datos");
+		bbdd.db.transaction(function(tx){
+			for (i = 0; i < 50; i++) {
+				tx.executeSql('INSERT INTO DEMO (data) VALUES ("Another row")');
+			}
+			
+		}); 
+         
+    },
+    
+	checkDB: function (tx) {
+		console.log("Somos checkDB");
+        tx.executeSql('SELECT * FROM DEMO', [],function (tx, results) {
+			if (results.rows.length>0) {
+				console.log("La BBDD ya existe");
+			}else{
+				console.log("Creamos la BBDD");
+				bbdd.createBD();
+			}
+		}, bbdd.errorCB);
+	 },
+	 
+	 checkResult: function (tx, results) {
+		 console.log("Somos checkResult");
+		 console.log(results);
+		 console.log("Returned rows = " + results.rows.length);
+		 if (results.rows.length>0) {
+			 for (i = 0; i < results.rows.length; i++) {
+				//Get the current row
+				var row = results.rows.item(i);
+				console.log("Tenemos la fila: "+i+" "+row);
+			};
+		} else {
+			//~ bbdd.createDB(tx);
+			console.log("BBDD vacia?");
+			
+		}
+	},
+    // Transaction error callback
+    //
+    errorCB: function (err) {
+        console.log("Error processing SQL: "+err);
+    },
+
+    // Transaction success callback
+    //
+    successCB: function () {
+        console.log("DB operation success!");
+    },
+	refreshDb: function() {
+		
+		console.log("Refresh DB");
+		console.log("Cargamos el JSON del server");
+		var jqxhr = $.getJSON("http://etxea.net/medicus/comercios.json", 
+			function(data) {
+				console.log( "success" );
+				app.refrescarLista(data);
+			})
+
+			.fail(function(jqxhr, textStatus, error) {
+			console.log( "error" );
+			var err = textStatus + ", " + error;
+			console.log( "Request Failed: " + err );
+			})
+		console.log("Terminado checkUpdates");
+		
+	},
+	
+};
+ 
 
 var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+        
     },
     // Bind Event Listeners
     //
@@ -34,56 +126,47 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-		
-		//~ app.initializeLista();
+		//inicializamos BBDD
+		bbdd.initialize();
 		//Iniciamos ons
-		console.log("Iniciamos ONS");
+		//~ console.log("Iniciamos ONS");
 		ons.bootstrap();
 		ons.ready(function() {
-			//Primera inicialización
-			//app.initializeMap();
 			$(document.body).on('pageinit', 'mapa.html', function() {
-				console.log("Somos mapa.html");
+				//~ console.log("Somos mapa.html");
 				app.initializeMap();
 			})
-			//~ menu.on('postclose', function() {
-				//~ console.log("Menu page is closed");
-				//~ app.initializeMap();
-			//~ });
-			console.log("ONS listo");
-			
-			//Cambiamos el height del mapa
+			console.log("ONS listo");			
+			//asociamos el evento postpush tras la carga d euna página
 			app.navi.on("postpush", app.postPushEvent);
 		});
-		
         app.receivedEvent('deviceready');
-        
     },
+    
+	//Evento que se ejecuta tras cargar una nueva pagina en el navegador
     postPushEvent: function() {
-		console.log("somos post push");
+		//~ console.log("somos post push");
 		var page = app.navi.getCurrentPage();
-		//~ console.log(page);
-		//~ console.log(page.options);
-		//~ console.log(page.options.mapa);
 		if (page.options.mapa) {
 			app.initializeMap();
 		}
 		
 	},
+	// FUNCIONES MAPA //
 	initializeMap: function () {
-		console.log("Iniciamos el mapa");
+		//~ console.log("Iniciamos el mapa");
 		alto = $(window).height()
 		alto2 = windowHeight = screen.height; 
 		console.log("Alto ventana: "+alto+" "+alto2);
 		$("#map").height(alto);
-		console.log("Redimensionado listo");
+		//~ console.log("Redimensionado listo");
 		app.map = new L.Map('map');
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		var osmAttrib = 'Map data © OpenStreetMap contributors';
 		var osm = new L.TileLayer(osmUrl, { attribution: osmAttrib });
 		app.map.setView(new L.LatLng(42.847363,-2.6734835), 14);
 		app.map.addLayer(osm);
-		console.log("Mapa Iniciado");
+		//~ console.log("Mapa Iniciado");
 	},
     buscame_onSuccess: function(position) {
         console.log("Te pillé");
@@ -103,7 +186,6 @@ var app = {
         console.log("Centrado");
     },
      
-
     // onError Callback receives a PositionError object
     //
     buscame_onError: function(error) {
@@ -115,7 +197,9 @@ var app = {
         console.log("Vamos a buscar la posicion");
         navigator.geolocation.getCurrentPosition(this.buscame_onSuccess, this.buscame_onError);
     },
+    // FUNCIONES MAPA //
     
+    // FUNCIONES LISTA //
 	initializeLista: function() {
 		console.log("Cargando lista comercios");
 		
@@ -133,34 +217,18 @@ var app = {
 		});
 		console.log("Terminado refrescarLista");
 	},
+	// FUNCIONES LISTA //
 	
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        console.log('Received Event: ' + id);
+        //~ console.log('Received Event: ' + id);
         if(id="deviceready") {
 			$("#splash").hide();
-			console.log("listo, quitamos el splash");
+			//~ console.log("listo, quitamos el splash");
 		}
     },
-    refreshDb: function() {
-		
-		console.log("Refresh DB");
-		console.log("Cargamos el JSON del server");
-		var jqxhr = $.getJSON("http://etxea.net/medicus/comercios.json", 
-			function(data) {
-				console.log( "success" );
-				app.refrescarLista(data);
-			})
-
-			.fail(function(jqxhr, textStatus, error) {
-			console.log( "error" );
-			var err = textStatus + ", " + error;
-			console.log( "Request Failed: " + err );
-			})
-		console.log("Terminado checkUpdates");
-		
-	},
-	checkUpdates: function() {
+    
+    checkUpdates: function() {
 		console.log("Cargamos el JSON del server");
 		var jqxhr = $.getJSON("http://etxea.net/medicus/about.json", 
 			function(data) {
@@ -181,5 +249,6 @@ var app = {
 	},
 	
 };
+
 
 app.initialize();

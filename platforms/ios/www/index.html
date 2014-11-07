@@ -24,17 +24,175 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
         <title>Hello World</title>
+		<!--  Para el onsen  -->
+		<link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
+		<link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
+		<script src="lib/onsen/js/angular/angular.js"></script>    
+		<script src="lib/onsen/js/onsenui.js"></script>    
+		<!--  Para el mapa  -->
+		<link rel="stylesheet" href="css/leaflet.css" />
+		<script src="js/leaflet.js"></script>
+		<!-- JQuery -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<!-- El estilo -->
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		
+		<style>
+			#map { width: 100%; height: 490px; };
+			#splash { width: 100%; height: 900px; }
+		</style>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
+		
+<ons-navigator animation="slide" var="app.navi">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Comercio Justo</div>
+    </ons-toolbar>
+		
+		<div id="splash">
+		</div>
+		<ons-row>
+		  <ons-col>
+			  <div style="text-align: center" >
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('listado.html');">
+					  <ons-icon icon="fa-list" size="4x"></ons-icon>
+				  </ons-button>
+			  
+			  </div>
+		  </ons-col>
+		  <ons-col>
+			  <div style="text-align: center" >
+				   <ons-button modifier="light" ng-click="app.navi.pushPage('mapa.html',{ mapa: 'True'});">
+					  <ons-icon icon="fa-map-marker" size="64px"></ons-icon>
+				  </ons-button>
+			  
+			  </div>
+		  </ons-col>
+		</ons-row>		
+		<ons-row>
+		  <ons-col>
+			  <div style="text-align: center" >
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('about.html');">
+					  <ons-icon icon="fa-life-ring" size="64px"></ons-icon>
+				  </ons-button>
+				
+			  </div>
+		  </ons-col>
+		  <ons-col>
+			  <div style="text-align: center" >
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('settings.html');">
+					  <ons-icon icon="fa-sliders" size="64px"></ons-icon>
+				  </ons-button>
+				  
+		  </ons-col>
+		</ons-row>		
+	</ons-page>
+</ons-navigator>
+		  
+<ons-template id="listado.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button onclick="app.navi.popPage('listado.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Listado</div>
+	  <div class="right"><ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon></div>
+	</ons-toolbar>
+	
+	<ons-list id="listado_comercios" >
+	  <ons-list-header>Comercios</ons-list-header>
+	  
+	</ons-list>
+
+  </ons-page>
+</ons-template>
+
+
+<ons-template id="mapa.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button ng-click="app.navi.popPage('mapa.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Mapa</div>
+	  <div class="right">
+		  
+			<ons-toolbar-button>
+				<ons-icon icon="ion-arrow-shrink" size="32px" fixed-width="false" onclick="app.buscame()"></ons-icon> 
+			</ons-toolbar-button>
+			
+		   
+	  </div>
+	</ons-toolbar>
+	<div id="map"></div>
+	
+  </ons-page>
+</ons-template>
+
+<ons-template id="settings.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button ng-click="app.navi.popPage('settings.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Configuración</div>
+	</ons-toolbar>
+	<ons-list>
+	  <ons-list-header>Opciones</ons-list-header>
+	  <ons-list-item>Versión BBDD: <span id="bbdd_version">0.0</span> &nbsp;&nbsp; </ons-list-item>
+	  <ons-list-item>Ultima Versión BBDD: <span id="bbdd_last">0.0</span> &nbsp;&nbsp; <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon> </ons-list-item>
+	  <ons-list-item>Version Aplicación <span id="app_version">0.0</span></ons-list-item>
+	  <ons-list-item>Ultima Version Aplicación <span id="app_last">0.0</span></ons-list-item>
+	  <ons-list-item>Comprobar actualizaciones <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.checkUpdates()"></ons-icon></ons-list-item>
+	  
+	</ons-list>
+	
+	
+	
+  </ons-page>
+</ons-template>
+<ons-template id="about.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button ng-click="app.navi.popPage('about.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Acerda de</div>
+	</ons-toolbar>
+	<div>
+	Información de la licencia, quien la hecho, etc
+	</div>
+  </ons-page>
+</ons-template>
+
+
+<ons-template id="menu.html">
+  <ons-list>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('inicio.html', {closeMenu: true})">
+	  Inicio
+	</ons-list-item>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('listado.html', {closeMenu: true})">
+	  Listado
+	</ons-list-item>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('mapa.html', {closeMenu: true})">
+	  Mapa
+	</ons-list-item>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('settings.html', {closeMenu: true})">
+	  Configuración
+	</ons-list-item>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('about.html', {closeMenu: true})">
+	  Acerca de
+	</ons-list-item>
+  </ons-list>
+</ons-template>
+
+
+
+
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
