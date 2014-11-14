@@ -135,12 +135,32 @@ var bbdd = {
 					console.log("Vamos a rellenar la lista");
 					for (i = 0; i < len; i++) {
 						comercio = results.rows.item(i);
-						console.log("Añadimos "+comercio.id+" "+comercio.nombre);
+						//console.log("Añadimos "+comercio.id+" "+comercio.nombre);
 						$("#listado_comercios").append('<ons-list-item class="list__item ons-list-item-inner"\
 							onclick=\'app.navi.pushPage("ficha.html", { ficha: "True", comercio: "'+comercio.id+'"});\' >'
 							+comercio.nombre+'</ons-list-item>');
 					}
 
+					
+				}else{
+					console.log("Sin resultados");
+				}
+			}, bbdd.errorCB);
+		});
+	},
+	cargarComercio: function(id_comercio) {
+		console.log("Vamos a buscar en BBDD el comercio "+id_comercio);
+		consulta = "SELECT * FROM comercios WHERE id = "+id_comercio;
+		console.log("El sql es: "+consulta);
+		bbdd.db.transaction(function(tx){
+			tx.executeSql(consulta, [],function (tx, results) {
+				if (results.rows.length>0) {
+					console.log("Vamos a rellenar la ficha");
+					comercio = results.rows.item(0);
+					console.log("Añadimos "+comercio.id+" "+comercio.nombre);
+					$("#ficha_comercio_nombre").text(comercio.nombre);
+					$("#ficha_comercio_direccion").text(comercio.nombre);
+					$("#ficha_comercio_telefono").text(comercio.nombre);
 					
 				}else{
 					console.log("Sin resultados");
@@ -201,6 +221,7 @@ var app = {
 		}
 		if (page.options.ficha) {
 			console.log("Cargamos los datos del comercio: "+page.options.comercio);
+			bbdd.cargarComercio(page.options.comercio);
 		}
 	},
 	// FUNCIONES MAPA //
