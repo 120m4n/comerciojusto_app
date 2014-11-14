@@ -134,8 +134,11 @@ var bbdd = {
 				if (len>0) {
 					console.log("Vamos a rellenar la lista");
 					for (i = 0; i < len; i++) {
-						console.log("Añadimos "+results.rows.item(i).id+" "+results.rows.item(i).nombre);
-						$("#listado_comercios").append('<ons-list-item class="list__item ons-list-item-inner">'+results.rows.item(i).nombre+'</ons-list-item>');
+						comercio = results.rows.item(i);
+						console.log("Añadimos "+comercio.id+" "+comercio.nombre);
+						$("#listado_comercios").append('<ons-list-item class="list__item ons-list-item-inner"\
+							onclick=\'app.navi.pushPage("ficha.html", { ficha: "True", comercio: "'+comercio.id+'"});\' >'
+							+comercio.nombre+'</ons-list-item>');
 					}
 
 					
@@ -193,7 +196,12 @@ var app = {
 		if (page.options.mapa) {
 			app.initializeMap();
 		}
-		
+		if (page.options.listado) {
+			app.refrescarListaComercios();
+		}
+		if (page.options.ficha) {
+			console.log("Cargamos los datos del comercio: "+page.options.comercio);
+		}
 	},
 	// FUNCIONES MAPA //
 	initializeMap: function () {

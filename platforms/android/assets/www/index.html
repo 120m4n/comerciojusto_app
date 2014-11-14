@@ -56,7 +56,7 @@
 		<ons-row>
 		  <ons-col>
 			  <div style="text-align: center" class="desktop_icon" >
-				  <ons-button modifier="light" ng-click="app.navi.pushPage('listado.html');">
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('listado.html',{ listado: 'True'});">
 					  <ons-icon class="desktop_icon" icon="fa-list" size="4x"></ons-icon>
 				  </ons-button>
 				<br/>Listado
@@ -183,6 +183,26 @@
 	</div>
   </ons-page>
 </ons-template>
+
+<ons-template id="ficha.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button ng-click="app.navi.popPage('ficha.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Ficha</div>
+	  
+	</ons-toolbar>
+	<ons-list>
+	  <ons-list-header>Ficha comercio</ons-list-header>
+	  <ons-list-item>Nombre:<span id="ficha_comercio_nombre"></span></ons-list-item>
+	  <ons-list-item>Telefono:<span id="ficha_comercio_telefono"></span></ons-list-item>
+	  <ons-list-item>Dirección:<span id="ficha_comercio_direccion"></span></ons-list-item>
+	</ons-list>
+	
+  </ons-page>
+</ons-template>
+
 
 <ons-template id="menu.html">
   <ons-list>
