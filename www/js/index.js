@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- 
 var bbdd = {
 	
 	initialize: function() {
@@ -30,17 +29,24 @@ var bbdd = {
 	
 	createBD: function() {
 		bbdd.db.transaction(function(tx){
-			//~ tx.executeSql('DROP TABLE IF EXISTS DEMO');
-			tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id INTEGER PRIMARY KEY, data)');
+			console.log("Somos createBD");
+			console.log("Borramos la BBDD si existe");
+			tx.executeSql('DROP TABLE IF EXISTS comercios');
+			sql="CREATE TABLE comercios(id INTEGER PRIMARY KEY ASC, nombre TEXT, telefono TEXT,direccion TEXT, lat REAL, lon REAL,categoria INTEGER,  etiqueta_1 INTEGER, etiqueta_2 INTEGER, etiqueta_3 INTEGER, etiqueta_4 INTEGER, etiqueta_5 INTEGER, etiqueta_6 INTEGER);"
+			console.log("Creamos la BBDD");
+			console.log(sql);
+			tx.executeSql(sql);
 			bbdd.populateDB();
 		});
 	},
 	// Populate the database 
     populateDB: function () {
-        console.log("Añadimos datos");
+        console.log("Somos populateBD");
 		bbdd.db.transaction(function(tx){
 			for (i = 0; i < 50; i++) {
-				tx.executeSql('INSERT INTO DEMO (data) VALUES ("Another row")');
+				console.log("Añadimos datos");
+				sql = 'INSERT INTO comercios (nombre, categoria, etiqueta_1,etiqueta_2) VALUES ("Comercio '+i+'",'+Math.floor(Math.random()*10)+','+Math.floor(Math.random()*2)+','+Math.floor(Math.random()*2)+')';
+				tx.executeSql(sql);
 			}
 			
 		}); 
@@ -49,14 +55,17 @@ var bbdd = {
     
 	checkDB: function (tx) {
 		console.log("Somos checkDB");
-        tx.executeSql('SELECT * FROM DEMO', [],function (tx, results) {
+        tx.executeSql('SELECT * FROM comercios', [],function (tx, results) {
 			if (results.rows.length>0) {
 				console.log("La BBDD ya existe");
 			}else{
 				console.log("Creamos la BBDD");
 				bbdd.createBD();
 			}
-		}, bbdd.errorCB);
+		}, function(){
+			console.log("Ha fallado el check por si acaso recreamos la BBDD");
+			bbdd.createBD();
+			});
 	 },
 	 
 	 checkResult: function (tx, results) {
@@ -95,7 +104,6 @@ var bbdd = {
 				console.log( "success" );
 				app.refrescarLista(data);
 			})
-
 			.fail(function(jqxhr, textStatus, error) {
 			console.log( "error" );
 			var err = textStatus + ", " + error;
@@ -104,9 +112,44 @@ var bbdd = {
 		console.log("Terminado checkUpdates");
 		
 	},
+	listComercios: function(categoria,etiquetas) {
+		console.log("Vamos a buscar en BBDD los comercios con categoria "+categoria+" y las etiquetas "+etiquetas);
+		if (categoria>0) {
+			consulta = "SELECT * FROM comercios WHERE categoria = "+categoria;
+		} else {
+			consulta = "SELECT * FROM comercios WHERE categoria > 0";
+		}
+		while (etiquetas.length > 0 ) {
+			consulta = consulta + " AND etiqueta_"+etiquetas.pop()+"=1";
+		}
+		
+		console.log("El sql es: "+consulta);
+		bbdd.db.transaction(function(tx){
+			tx.executeSql(consulta, [],function (tx, results) {
+				console.log("Vaciamos la lista");
+				$("#listado_comercios").empty();
+				$("#listado_comercios").append('<ons-list-header class="list__header ons-list-header-inner">Listado de Comercios</ons-list-header>');
+				var len = results.rows.length;
+				console.log("Hemos encontrado "+len+" comercios");
+				if (len>0) {
+					console.log("Vamos a rellenar la lista");
+					for (i = 0; i < len; i++) {
+						console.log("Añadimos "+results.rows.item(i).id+" "+results.rows.item(i).nombre);
+						$("#listado_comercios").append('<ons-list-item class="list__item ons-list-item-inner">'+results.rows.item(i).nombre+'</ons-list-item>');
+					}
+
+					
+				}else{
+					console.log("Sin resultados");
+				}
+			}, bbdd.errorCB);
+		});
+	},
 	
 };
  
+
+
 
 var app = {
     // Application Constructor
@@ -209,12 +252,28 @@ var app = {
 		}
 	},
 	
-	refrescarLista: function(data) {
+	refrescarListaComercios: function() {
 		console.log("Cargando lista comercios");
-		$.each( data.comercios, function( i, item ) {
-			console.log("Añadimos el comercio: "+i);
-			$("#listado_comercios").append('<ons-list-item>Comercio '+item.nombre+'</ons-list-item>');
+		//Leemos los filtros:
+		var categoria = $('#select_categorias :selected').val();
+		console.log("Tenemos la categoria: " + categoria);
+		var etiquetas = [];
+		elegidas = $("#checkbox_etiquetas").children("input:checked");
+		$.each( elegidas, function( tag ) {
+			console.log("Tenemos elegida la tag "+elegidas[tag].value);
+			etiquetas.push(elegidas[tag].value);
 		});
+		console.log("Tenemos las etiquetas "+etiquetas);
+		console.log("Consultamos a BBDD");
+		bbdd.listComercios(categoria,etiquetas);
+		//~ $.each( data.comercios, function( i, item ) {
+			//~ console.log("Añadimos el comercio: "+i);
+			//~ $("#listado_comercios").append('<ons-list-item>Comercio '+item.nombre+'</ons-list-item>');
+		//~ });
+		//~ for (i = 0; i < 50; i++) {
+			//~ console.log("Añadimos el comercio: "+i);
+			//~ $("#listado_comercios").append('<ons-list-item>Comercio '+i+'</ons-list-item>');
+		//~ }
 		console.log("Terminado refrescarLista");
 	},
 	// FUNCIONES LISTA //

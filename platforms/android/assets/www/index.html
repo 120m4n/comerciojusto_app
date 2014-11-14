@@ -99,26 +99,25 @@
 		<ons-toolbar-button onclick="app.navi.popPage('listado.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
 	  </div>
 	  <div class="center">Listado</div>
-	  <div class="right"><ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon></div>
 	</ons-toolbar>
-	 <select id="select_categorias">
-		<option value="todos">Todos</option>
-		<option value="alimentacion">Alimentación</option>
-		<option value="ropa">Ropa</option>
-		<option value="artesania">Artesania</option>
-		<option value="bar">Restarurantes y bares</option>
-		<option value="limpieza">Limpieza</option>
-		<option value="mercado">Ferias y mercados</option>
-		<option value="oficina">Material de oficina</option>
-		<option value="otros">Otros</option>
+	 <select id="select_categorias" onchange="app.refrescarListaComercios();">
+		<option value="0">Todos</option>
+		<option value="1">Alimentación</option>
+		<option value="2">Ropa</option>
+		<option value="3">Artesania</option>
+		<option value="4">Restarurantes y bares</option>
+		<option value="5">Limpieza</option>
+		<option value="6">Ferias y mercados</option>
+		<option value="7">Material de oficina</option>
+		<option value="8">Otros</option>
 	</select>
 	<div id="checkbox_etiquetas">
-		<input value="tag1" type="checkbox" >Local</input>
-		<input value="tag2" type="checkbox" >Ecológico</input>
-		<input value="tag3" type="checkbox" >Comercio Justo</input>
-		<input value="tag4" type="checkbox" >Segunda Mano</input>
-		<input value="tag5" type="checkbox" >reparar/Reciclar</input>
-		<input value="tag6" type="checkbox" >Mujer</input>
+		<input id="tag1" value="1" type="checkbox" onchange="app.refrescarListaComercios();">Local</input>
+		<input id="tag2" value="2" type="checkbox" onchange="app.refrescarListaComercios();">Ecológico</input>
+		<input id="tag3" value="3" type="checkbox" onchange="app.refrescarListaComercios();">Comercio Justo</input>
+		<input id="tag4" value="4" type="checkbox" onchange="app.refrescarListaComercios();">Segunda Mano</input>
+		<input id="tag5" value="5" type="checkbox" onchange="app.refrescarListaComercios();">Reparar/Reciclar</input>
+		<input id="tag6" value="6" type="checkbox" onchange="app.refrescarListaComercios();">Mujer</input>
 	</div> 
 	
 	<ons-list id="listado_comercios" >
@@ -168,9 +167,7 @@
 	  <ons-list-item>Comprobar actualizaciones <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.checkUpdates()"></ons-icon></ons-list-item>
 	  
 	</ons-list>
-	
-	
-	
+		
   </ons-page>
 </ons-template>
 <ons-template id="about.html">
@@ -186,7 +183,6 @@
 	</div>
   </ons-page>
 </ons-template>
-
 
 <ons-template id="menu.html">
   <ons-list>
@@ -213,6 +209,9 @@
 
 
         <script type="text/javascript" src="cordova.js"></script>
+<!--
+        <script type="text/javascript" src="js/bbdd.js"></script>
+-->
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
