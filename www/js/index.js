@@ -50,6 +50,12 @@ var app = {
 			app.navi.on("postpush", app.postPushEvent);
 		});
         app.receivedEvent('deviceready');
+        var networkState = navigator.connection.type;
+        console.log("Tenemos el networkState: "+networkState);
+        if(networkState==Connection.CELL_3G) {
+			console.log("Tenemos 3g");
+			app.refreshDb();
+		}
     },
     
 	//Evento que se ejecuta tras cargar una nueva pagina en el navegador

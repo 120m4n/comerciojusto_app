@@ -61,25 +61,25 @@ var bbdd = {
 	},
 	// Populate the database 
     populateDB: function () {
-        console.log("Somos populateBD");		
-		console.log("Cargamos el JSON local");
+		console.log("Cargamos el JSON desde la web");
 		//~ $.getJSON( "js/comercios.json",function( data ) {
 		$.getJSON( "http://pronosticadores.net/json.php",function( data ) {
 			console.log("JSON cargado vamos a recorrerlo");
 				$.each( data, function( key,val ) {
-					console.log("Tenemos el key :"+key);
+					//~ console.log("Tenemos el key :"+key);
 					var comercio = val;
 					bbdd.db.transaction(function(tx){
-						sql = "INSERT INTO comercios (nombre,categoria,direccion,telefono,latitud,longitud,etiqueta_1,etiqueta_2,etiqueta_3,etiqueta_4,etiqueta_5,etiqueta_6) VALUES ('"+comercio.nombre+"','"+comercio.categoria+"','"+comercio.direccion+"','"+comercio.telefono+"','"+comercio.latitud+"','"+comercio.longitud+"','"+comercio.cLocal+"','"+comercio.cEcologico+"','"+comercio.cComercio+"','"+comercio.cSegunda+"','"+comercio.cReparar+"','"+comercio.cMujer+"')";
-						console.log(sql);
+						sql = "INSERT INTO comercios (id_comercio,nombre,categoria,direccion,telefono,latitud,longitud,etiqueta_1,etiqueta_2,etiqueta_3,etiqueta_4,etiqueta_5,etiqueta_6) VALUES ('"+comercio.id_comercio+"','"+comercio.nombre+"','"+comercio.categoria+"','"+comercio.direccion+"','"+comercio.telefono+"','"+comercio.latitud+"','"+comercio.longitud+"','"+comercio.cLocal+"','"+comercio.cEcologico+"','"+comercio.cComercio+"','"+comercio.cSegunda+"','"+comercio.cReparar+"','"+comercio.cMujer+"')";
+						//~ console.log(sql);
 						tx.executeSql(sql,[], 
-							function (tx, results) { console.log('Insert OK'+results); }, 
+							function (tx, results) { /* console.log('Insert OK');*/ }, 
 							function(tx,error){ console.log("Insert KO: "+error.code+" "+error.message); }
 						);
 				});
 			});
+			console.log("JSON Procesado");
 		}).fail(function(jqxhr, textStatus, error) {
-				console.log( "error" );
+				console.log( "Error descargando el JSON" );
 				var err = textStatus + ", " + error;
 				console.log( "Request Failed: " + err );
 		});

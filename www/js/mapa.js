@@ -17,6 +17,18 @@
  * under the License.
  */
 
+var icono_alimentacion = L.icon({
+					iconUrl: 'img/alimentacion_marker-icon.png',
+					iconRetinaUrl: 'img/alimentacion_marker-icon-2x.png',
+					iconSize: [23, 28],
+					iconAnchor: [22, 94],
+					popupAnchor: [-3, -76],
+					shadowUrl: 'img/marker-shadow.png',
+					shadowRetinaUrl: 'img/marker-shadow.png',
+					shadowSize: [23, 28],
+					shadowAnchor: [22, 94]
+				});
+
 var iconos = {
 	 alimentacion: L.icon({
 					iconUrl: 'img/alimentacion_marker-icon.png',
@@ -71,10 +83,10 @@ var mapa = {
 					console.log("Vamos a añadir los marcadores");
 					for (i = 0; i < len; i++) {
 						comercio = results.rows.item(i);
-						console.log("Añadimos "+comercio.id_comercio+" al mapa en ["+comercio.latitud+","+comercio.longitud+"]");
+						//~ console.log("Añadimos "+comercio.id_comercio+" al mapa en ["+comercio.latitud+","+comercio.longitud+"]");
 						popup_texto = "<div onclick='app.navi.pushPage(\"ficha.html\", { ficha: \"True\", comercio: \""+comercio.id_comercio+"\"})';>"+comercio.nombre+" "+comercio.telefono+"</div>";
 						//console.log(popup_texto);
-						L.marker([comercio.longitud, comercio.latitud],{icon: iconos.alimentacion}).addTo(app.map).bindPopup(popup_texto);
+						L.marker([comercio.longitud, comercio.latitud],{icon: icono_alimentacion}).addTo(app.map).bindPopup(popup_texto);
 					}
 					console.log("Marcadores listos");
 				}else{
