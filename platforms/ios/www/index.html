@@ -39,10 +39,6 @@
 		<!-- El estilo -->
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 		
-		<style>
-			#map { width: 100%; height: 490px; };
-			#splash { width: 100%; height: 900px; }
-		</style>
     </head>
     <body>
 		
@@ -53,42 +49,46 @@
     </ons-toolbar>
 		
 		<div id="splash">
+			Somos el splash...
 		</div>
+		<br />
+		
 		<ons-row>
 		  <ons-col>
-			  <div style="text-align: center" >
-				  <ons-button modifier="light" ng-click="app.navi.pushPage('listado.html');">
-					  <ons-icon icon="fa-list" size="4x"></ons-icon>
+			  <div style="text-align: center" class="desktop_icon" >
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('listado.html',{ listado: 'True'});">
+					  <ons-icon class="desktop_icon" icon="fa-list" size="4x"></ons-icon>
 				  </ons-button>
-			  
+				<br/>Listado
 			  </div>
 		  </ons-col>
 		  <ons-col>
-			  <div style="text-align: center" >
+			  <div style="text-align: center" class="desktop_icon" >
 				   <ons-button modifier="light" ng-click="app.navi.pushPage('mapa.html',{ mapa: 'True'});">
-					  <ons-icon icon="fa-map-marker" size="64px"></ons-icon>
+					  <ons-icon class="desktop_icon" icon="fa-map-marker" size="64px"></ons-icon>
 				  </ons-button>
-			  
+				<br/>Mapa
 			  </div>
 		  </ons-col>
-		</ons-row>		
+		</ons-row>
+		<br />		
 		<ons-row>
 		  <ons-col>
-			  <div style="text-align: center" >
+			  <div style="text-align: center" class="desktop_icon" >
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('about.html');">
-					  <ons-icon icon="fa-life-ring" size="64px"></ons-icon>
+					  <ons-icon class="desktop_icon" icon="fa-life-ring" size="64px"></ons-icon>
 				  </ons-button>
-				
+				<br/> Ayuda
 			  </div>
 		  </ons-col>
 		  <ons-col>
-			  <div style="text-align: center" >
+			  <div style="text-align: center" class="desktop_icon" >
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('settings.html');">
-					  <ons-icon icon="fa-sliders" size="64px"></ons-icon>
+					  <ons-icon class="desktop_icon" icon="fa-sliders" size="64px"></ons-icon>
 				  </ons-button>
-				  
+				<br/>Ajustes  
 		  </ons-col>
-		</ons-row>		
+		</ons-row>			
 	</ons-page>
 </ons-navigator>
 		  
@@ -99,11 +99,37 @@
 		<ons-toolbar-button onclick="app.navi.popPage('listado.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
 	  </div>
 	  <div class="center">Listado</div>
-	  <div class="right"><ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon></div>
+	  <div class="right">
+		  
+			<ons-toolbar-button>
+				<ons-icon icon="ion-search" size="32px" fixed-width="false" onclick="app.buscar_comercio()"></ons-icon> 
+			</ons-toolbar-button>
+			
+		   
+	  </div>
 	</ons-toolbar>
+	 <select id="select_categorias" onchange="app.refrescarListaComercios();">
+		<option value="0">Todos</option>
+		<option value="1">Alimentación</option>
+		<option value="2">Ropa</option>
+		<option value="3">Artesania</option>
+		<option value="4">Restarurantes y bares</option>
+		<option value="5">Limpieza</option>
+		<option value="6">Ferias y mercados</option>
+		<option value="7">Material de oficina</option>
+		<option value="8">Otros</option>
+	</select>
+	<div id="checkbox_etiquetas">
+		<input id="tag1" value="1" type="checkbox" onchange="app.refrescarListaComercios();">Local</input>
+		<input id="tag2" value="2" type="checkbox" onchange="app.refrescarListaComercios();">Ecológico</input>
+		<input id="tag3" value="3" type="checkbox" onchange="app.refrescarListaComercios();">Comercio Justo</input>
+		<input id="tag4" value="4" type="checkbox" onchange="app.refrescarListaComercios();">Segunda Mano</input>
+		<input id="tag5" value="5" type="checkbox" onchange="app.refrescarListaComercios();">Reparar/Reciclar</input>
+		<input id="tag6" value="6" type="checkbox" onchange="app.refrescarListaComercios();">Mujer</input>
+	</div> 
 	
 	<ons-list id="listado_comercios" >
-	  <ons-list-header>Comercios</ons-list-header>
+	  <ons-list-header>Listado de Comercios</ons-list-header>
 	  
 	</ons-list>
 
@@ -149,9 +175,7 @@
 	  <ons-list-item>Comprobar actualizaciones <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.checkUpdates()"></ons-icon></ons-list-item>
 	  
 	</ons-list>
-	
-	
-	
+		
   </ons-page>
 </ons-template>
 <ons-template id="about.html">
@@ -165,6 +189,25 @@
 	<div>
 	Información de la licencia, quien la hecho, etc
 	</div>
+  </ons-page>
+</ons-template>
+
+<ons-template id="ficha.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button ng-click="app.navi.popPage('ficha.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Ficha</div>
+	  
+	</ons-toolbar>
+	<ons-list>
+	  <ons-list-header>Ficha comercio</ons-list-header>
+	  <ons-list-item>Nombre:<span id="ficha_comercio_nombre"></span></ons-list-item>
+	  <ons-list-item>Telefono:<span id="ficha_comercio_telefono"></span></ons-list-item>
+	  <ons-list-item>Dirección:<span id="ficha_comercio_direccion"></span></ons-list-item>
+	</ons-list>
+	
   </ons-page>
 </ons-template>
 
@@ -194,6 +237,8 @@
 
 
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/bbdd.js"></script>
+        <script type="text/javascript" src="js/mapa.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>

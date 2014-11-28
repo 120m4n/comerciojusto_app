@@ -16,97 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- 
-var bbdd = {
-	
-	initialize: function() {
-		console.log("Abrimos la BBDD");
-		bbdd.db = window.openDatabase("comercios", "0.1", "Comercios", 100000);
-		//~ console.log("DB abierta. Creamos las tablas");
-		//~ bbdd.db.transaction(bbdd.createDB, bbdd.errorCB, bbdd.successCB);
-		console.log("Miramos si la tabla existe o hay que crearla");
-		bbdd.db.transaction(bbdd.checkDB, bbdd.errorCB, bbdd.successCB);
-	},
-	
-	createBD: function() {
-		bbdd.db.transaction(function(tx){
-			//~ tx.executeSql('DROP TABLE IF EXISTS DEMO');
-			tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id INTEGER PRIMARY KEY, data)');
-			bbdd.populateDB();
-		});
-	},
-	// Populate the database 
-    populateDB: function () {
-        console.log("Añadimos datos");
-		bbdd.db.transaction(function(tx){
-			for (i = 0; i < 50; i++) {
-				tx.executeSql('INSERT INTO DEMO (data) VALUES ("Another row")');
-			}
-			
-		}); 
-         
-    },
-    
-	checkDB: function (tx) {
-		console.log("Somos checkDB");
-        tx.executeSql('SELECT * FROM DEMO', [],function (tx, results) {
-			if (results.rows.length>0) {
-				console.log("La BBDD ya existe");
-			}else{
-				console.log("Creamos la BBDD");
-				bbdd.createBD();
-			}
-		}, bbdd.errorCB);
-	 },
-	 
-	 checkResult: function (tx, results) {
-		 console.log("Somos checkResult");
-		 console.log(results);
-		 console.log("Returned rows = " + results.rows.length);
-		 if (results.rows.length>0) {
-			 for (i = 0; i < results.rows.length; i++) {
-				//Get the current row
-				var row = results.rows.item(i);
-				console.log("Tenemos la fila: "+i+" "+row);
-			};
-		} else {
-			//~ bbdd.createDB(tx);
-			console.log("BBDD vacia?");
-			
-		}
-	},
-    // Transaction error callback
-    //
-    errorCB: function (err) {
-        console.log("Error processing SQL: "+err);
-    },
-
-    // Transaction success callback
-    //
-    successCB: function () {
-        console.log("DB operation success!");
-    },
-	refreshDb: function() {
-		
-		console.log("Refresh DB");
-		console.log("Cargamos el JSON del server");
-		var jqxhr = $.getJSON("http://etxea.net/medicus/comercios.json", 
-			function(data) {
-				console.log( "success" );
-				app.refrescarLista(data);
-			})
-
-			.fail(function(jqxhr, textStatus, error) {
-			console.log( "error" );
-			var err = textStatus + ", " + error;
-			console.log( "Request Failed: " + err );
-			})
-		console.log("Terminado checkUpdates");
-		
-	},
-	
-};
- 
 
 var app = {
     // Application Constructor
@@ -150,11 +59,18 @@ var app = {
 		if (page.options.mapa) {
 			app.initializeMap();
 		}
-		
+		if (page.options.listado) {
+			app.refrescarListaComercios();
+		}
+		if (page.options.ficha) {
+			console.log("Cargamos los datos del comercio: "+page.options.comercio);
+			bbdd.cargarComercio(page.options.comercio);
+		}
 	},
 	// FUNCIONES MAPA //
 	initializeMap: function () {
 		//~ console.log("Iniciamos el mapa");
+		
 		alto = $(window).height()
 		alto2 = windowHeight = screen.height; 
 		console.log("Alto ventana: "+alto+" "+alto2);
@@ -164,9 +80,14 @@ var app = {
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		var osmAttrib = 'Map data © OpenStreetMap contributors';
 		var osm = new L.TileLayer(osmUrl, { attribution: osmAttrib });
-		app.map.setView(new L.LatLng(42.847363,-2.6734835), 14);
+		app.map.setView(new L.LatLng(42.847363,-2.6734835), 13);
 		app.map.addLayer(osm);
-		//~ console.log("Mapa Iniciado");
+		
+		consulta = "SELECT id_comercio,nombre,direccion,latitud,longitud,telefono FROM comercios";
+		bbdd.db.transaction(function(tx){
+			tx.executeSql(consulta, [],mapa.add_markers,function(tx,error){console.log("Error leyendo de BBDD: "+error.message)});
+		});
+		console.log("Mapa Iniciado");
 	},
     buscame_onSuccess: function(position) {
         console.log("Te pillé");
@@ -181,7 +102,7 @@ var app = {
         //var map = new L.Map('map');
         console.log("Centremonos");
             
-        app.map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), 16);
+        app.map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude), 15);
   
         console.log("Centrado");
     },
@@ -209,12 +130,28 @@ var app = {
 		}
 	},
 	
-	refrescarLista: function(data) {
+	refrescarListaComercios: function() {
 		console.log("Cargando lista comercios");
-		$.each( data.comercios, function( i, item ) {
-			console.log("Añadimos el comercio: "+i);
-			$("#listado_comercios").append('<ons-list-item>Comercio '+item.nombre+'</ons-list-item>');
+		//Leemos los filtros:
+		var categoria = $('#select_categorias :selected').val();
+		console.log("Tenemos la categoria: " + categoria);
+		var etiquetas = [];
+		elegidas = $("#checkbox_etiquetas").children("input:checked");
+		$.each( elegidas, function( tag ) {
+			console.log("Tenemos elegida la tag "+elegidas[tag].value);
+			etiquetas.push(elegidas[tag].value);
 		});
+		console.log("Tenemos las etiquetas "+etiquetas);
+		console.log("Consultamos a BBDD");
+		bbdd.listComercios(categoria,etiquetas);
+		//~ $.each( data.comercios, function( i, item ) {
+			//~ console.log("Añadimos el comercio: "+i);
+			//~ $("#listado_comercios").append('<ons-list-item>Comercio '+item.nombre+'</ons-list-item>');
+		//~ });
+		//~ for (i = 0; i < 50; i++) {
+			//~ console.log("Añadimos el comercio: "+i);
+			//~ $("#listado_comercios").append('<ons-list-item>Comercio '+i+'</ons-list-item>');
+		//~ }
 		console.log("Terminado refrescarLista");
 	},
 	// FUNCIONES LISTA //
@@ -246,6 +183,9 @@ var app = {
 			console.log( "Request Failed: " + err );
 			})
 		console.log("Terminado checkUpdates");
+	},
+	refreshDb: function() {
+		bbdd.refreshDb();
 	},
 	
 };
