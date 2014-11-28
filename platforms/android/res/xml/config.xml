@@ -1,16 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="net.etxea.comerciojusto" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
-    <name>ZentzuzKontsumitu</name>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+    </feature>
+    <splash density="land-hdpi" src="res/screen/android/splash-land-hdpi.png" />
+    <splash density="land-ldpi" src="res/screen/android/splash-land-ldpi.png" />
+    <splash density="land-mdpi" src="res/screen/android/splash-land-mdpi.png" />
+    <splash density="land-xhdpi" src="res/screen/android/splash-land-xhdpi.png" />
+    <splash density="port-hdpi" src="res/screen/android/splash-port-hdpi.png" />
+    <splash density="port-ldpi" src="res/screen/android/splash-port-ldpi.png" />
+    <splash density="port-mdpi" src="res/screen/android/splash-port-mdpi.png" />
+    <splash density="port-xhdpi" src="res/screen/android/splash-port-xhdpi.png" />
+    <name>Consumo Responsable</name>
     <description>
-        Aplicación para las tiendas de Comercio Justo en Vitoria/Gasteiz
+        Aplicación con callejero para conocer los comercios que promueven un comercio responsable en Vitoria/Gasteiz, Alava.
     </description>
     <author email="info@etxea.net" href="http://www.etxea.net">
         Etxea Soluciones TIC
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-    </feature>
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="auto-hide-splash-screen" value="false" />
+    <preference name="SplashScreen" value="screen" />
 </widget>
