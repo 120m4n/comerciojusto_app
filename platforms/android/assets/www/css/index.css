@@ -79,7 +79,7 @@ body {
 }
 
 h1 {
-    color: #6CB7C5;
+    color: #78cd6a;
     font-size:24px;
     font-weight:normal;
     margin:0px;
@@ -139,14 +139,14 @@ h1 {
   bottom: 0px;
   overflow: visible;
   font-size: 17px;
-  color: #436580;
+  color: #78cd6a;
 }
 .navigation-bar {
-	background-color: #436580;
-	color: #6CB7C5;
+	background-color: #78cd6a;
+	color: whitesmoke;
 }
 .navigation-bar__title {
-	color: #6CB7C5;
+	color: whitesmoke;
 }
 
 #splash {
@@ -165,7 +165,7 @@ h1 {
 	height: 490px; 
 }
 .desktop_icon {
-	color: #436580;
+	color: #78cd6a;
 }
 .button--light {
  border: 0px;
@@ -173,6 +173,6 @@ h1 {
 
 #select_categorias {
 	width: 100%;
-	color: #436580;
+	color: #78cd6a;
 	background-color: #E6EBE7;
 }
