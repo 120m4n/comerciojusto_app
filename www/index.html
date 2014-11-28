@@ -99,6 +99,14 @@
 		<ons-toolbar-button onclick="app.navi.popPage('listado.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
 	  </div>
 	  <div class="center">Listado</div>
+	  <div class="right">
+		  
+			<ons-toolbar-button>
+				<ons-icon icon="ion-search" size="32px" fixed-width="false" onclick="app.buscar_comercio()"></ons-icon> 
+			</ons-toolbar-button>
+			
+		   
+	  </div>
 	</ons-toolbar>
 	 <select id="select_categorias" onchange="app.refrescarListaComercios();">
 		<option value="0">Todos</option>
@@ -229,9 +237,8 @@
 
 
         <script type="text/javascript" src="cordova.js"></script>
-<!--
         <script type="text/javascript" src="js/bbdd.js"></script>
--->
+        <script type="text/javascript" src="js/mapa.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
