@@ -52,8 +52,8 @@ var app = {
         app.receivedEvent('deviceready');
         var networkState = navigator.connection.type;
         console.log("Tenemos el networkState: "+networkState);
-        if(networkState==Connection.CELL_3G) {
-			console.log("Tenemos 3g");
+        if(networkState==Connection.CELL_3G || networkState==Connection.WIFI ||  Connection.ETHERNET ) {
+			console.log("Tenemos 3g o WiFi o somos frikis y tiene ethernet");
 			app.refreshDb();
 		}
     },
