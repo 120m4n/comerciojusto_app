@@ -20,10 +20,10 @@
 var LeafIcon = L.Icon.extend({
 			options: {
 				shadowUrl: 'img/marker-shadow.png',
-				iconSize:     [38, 95],
-				shadowSize:   [50, 64],
-				iconAnchor:   [22, 94],
-				shadowAnchor: [4, 62],
+				iconSize:     [23, 28],
+				shadowSize:   [23, 28],
+				iconAnchor:   [23, 28],
+				shadowAnchor: [23, 28],
 				popupAnchor:  [-3, -76]
 			}
 		});
@@ -38,30 +38,58 @@ var mapa = {
 						comercio = results.rows.item(i);
 						
 						popup_texto = "<div onclick='app.navi.pushPage(\"ficha.html\", { ficha: \"True\", comercio: \""+comercio.id_comercio+"\"})';>"+comercio.nombre+" "+comercio.telefono+"</div>";
-						var icono_alimentacion = new LeafIcon({iconUrl: 'img/alimentacion_marker-icon.png'});
-						var icono_artesania = new LeafIcon({iconUrl: 'img/artesania_marker-icon.png'});		
-						var icono_otros = new LeafIcon({iconUrl: 'img/otros_marker-icon.png'});
+						var icono_alimentacion = new LeafIcon({
+							iconUrl: 'img/alimentacion_marker-icon.png',
+							iconRetinaUrl: 'img/alimentacion_marker-icon-2x.png',
+							});
+						var icono_artesania = new LeafIcon({
+							iconUrl: 'img/artesania_marker-icon.png',
+							iconRetinaUrl: 'img/artesania_marker-icon-2x.png',
+							});
+						var icono_mercados = new LeafIcon({
+							iconUrl: 'img/mercados_marker-icon.png',
+							iconRetinaUrl: 'img/mercados_marker-icon-2x.png',
+							});				
+						var icono_limpieza = new LeafIcon({
+							iconUrl: 'img/limpieza_marker-icon.png',
+							iconRetinaUrl: 'img/limpieza_marker-icon-2x.png',
+							});
+							var icono_oficina = new LeafIcon({
+							iconUrl: 'img/oficina_marker-icon.png',
+							iconRetinaUrl: 'img/oficina_marker-icon-2x.png',
+							});							
+						var icono_restaurante = new LeafIcon({
+							iconUrl: 'img/restaurante_marker-icon.png',
+							iconRetinaUrl: 'img/restaurante_marker-icon-2x.png',
+							});							
+						var icono_ropa = new LeafIcon({
+							iconUrl: 'img/ropa_marker-icon.png',
+							iconRetinaUrl: 'img/ropa_marker-icon-2x.png',
+							});						
+						var icono_otros = new LeafIcon({
+							iconUrl: 'img/otros_marker-icon.png',
+							iconRetinaUrl: 'img/otros_marker-icon-2x.png',
+							});		
 						if (comercio.categoria == '1') {
 							icono_seleccionado = icono_alimentacion;
 						}
 						else if (comercio.categoria == '2') {
-							console.log("Usamos el icono de artesania "+comercio.latitud+" "+comercio.longitud);
 							icono_seleccionado = icono_artesania;
 						}
 						else if (comercio.categoria == '3') {
-							icono_seleccionado = icono_artesania;
+							icono_seleccionado = icono_mercados;
 						}
 						else if (comercio.categoria == '4') {
-							icono_seleccionado = icono_artesania;
+							icono_seleccionado = icono_limpieza;
 						}
 						else if (comercio.categoria == '5') {
-							icono_seleccionado = icono_artesania;
+							icono_seleccionado = icono_oficina;
 						}
 						else if (comercio.categoria == '6') {
-							icono_seleccionado = icono_artesania;
+							icono_seleccionado = icono_restaurante;
 						}
 						else if (comercio.categoria == '7') {
-							icono_seleccionado = icono_artesania;
+							icono_seleccionado = icono_ropa;
 						}
 						else {
 							icono_seleccionado = icono_otros;
