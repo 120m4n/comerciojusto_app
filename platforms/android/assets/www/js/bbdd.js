@@ -35,7 +35,7 @@ var bbdd = {
 			sql="CREATE TABLE IF NOT EXISTS `comercios` (\
 				`id_comercio` INTEGER PRIMARY KEY AUTOINCREMENT,\
 				`nombre` varchar(255) NOT NULL,\
-				`categoria` varchar(255) NOT NULL,\
+				`categoria` varchar(255) NOT NULL DEFAULT '0',\
 				`direccion` varchar(255) NOT NULL,\
 				`telefono` varchar(15) NOT NULL,\
 				`etiqueta_1` Boolean,\
@@ -68,15 +68,21 @@ var bbdd = {
 				$.each( data, function( key,val ) {
 					//~ console.log("Tenemos el key :"+key);
 					var comercio = val;
+					if (comercio.categoria == "") {
+						comercio.categoria = 1;
+					}
+					//console.log("Categoria: "+comercio.categoria);
 					bbdd.db.transaction(function(tx){
+						
 						sql = "INSERT INTO comercios (id_comercio,nombre,categoria,direccion,telefono,latitud,longitud,etiqueta_1,etiqueta_2,etiqueta_3,etiqueta_4,etiqueta_5,etiqueta_6) VALUES ('"+comercio.id_comercio+"','"+comercio.nombre+"','"+comercio.categoria+"','"+comercio.direccion+"','"+comercio.telefono+"','"+comercio.latitud+"','"+comercio.longitud+"','"+comercio.cLocal+"','"+comercio.cEcologico+"','"+comercio.cComercio+"','"+comercio.cSegunda+"','"+comercio.cReparar+"','"+comercio.cMujer+"')";
-						//~ console.log(sql);
+						//console.log(sql);
 						tx.executeSql(sql,[], 
 							function (tx, results) { /* console.log('Insert OK');*/ }, 
 							function(tx,error){ console.log("Insert KO: "+error.code+" "+error.message); }
 						);
 				});
 			});
+			console.log("JSON Procesado");
 		}).fail(function(jqxhr, textStatus, error) {
 				console.log( "Error descargando el JSON" );
 				var err = textStatus + ", " + error;
@@ -178,10 +184,11 @@ var bbdd = {
 				if (results.rows.length>0) {
 					console.log("Vamos a rellenar la ficha");
 					comercio = results.rows.item(0);
-					console.log("Añadimos "+comercio.id+" "+comercio.nombre);
+					console.log("Añadimos "+comercio.id_comercio+" "+comercio.nombre);
 					$("#ficha_comercio_nombre").text(comercio.nombre);
 					$("#ficha_comercio_direccion").text(comercio.direccion);
 					$("#ficha_comercio_telefono").text(comercio.telefono);
+					$("#ficha_comercio_web").html("<a href='http://pronosticadores.net/ficha.php?id="+comercio.id_comercio+"'>web</a>");
 				}else{
 					console.log("Sin resultados");
 				}

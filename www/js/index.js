@@ -71,6 +71,21 @@ var app = {
 		if (page.options.ficha) {
 			console.log("Cargamos los datos del comercio: "+page.options.comercio);
 			bbdd.cargarComercio(page.options.comercio);
+			  window.fbAsyncInit = function() {
+			FB.init({
+			  appId      : '371506683014644',
+			  xfbml      : true,
+			  version    : 'v2.1'
+			});
+		  };
+
+		  (function(d, s, id){
+			 var js, fjs = d.getElementsByTagName(s)[0];
+			 if (d.getElementById(id)) {return;}
+			 js = d.createElement(s); js.id = id;
+			 js.src = "//connect.facebook.net/en_US/sdk.js";
+			 fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
 		}
 	},
 	// FUNCIONES MAPA //
@@ -89,7 +104,7 @@ var app = {
 		app.map.setView(new L.LatLng(42.847363,-2.6734835), 13);
 		app.map.addLayer(osm);
 		
-		consulta = "SELECT id_comercio,nombre,direccion,latitud,longitud,telefono FROM comercios";
+		consulta = "SELECT id_comercio,categoria,nombre,direccion,latitud,longitud,telefono FROM comercios";
 		bbdd.db.transaction(function(tx){
 			tx.executeSql(consulta, [],mapa.add_markers,function(tx,error){console.log("Error leyendo de BBDD: "+error.message)});
 		});

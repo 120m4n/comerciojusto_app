@@ -17,64 +17,17 @@
  * under the License.
  */
 
-var icono_alimentacion = L.icon({
-					iconUrl: 'img/alimentacion_marker-icon.png',
-					iconRetinaUrl: 'img/alimentacion_marker-icon-2x.png',
-					iconSize: [23, 28],
-					iconAnchor: [22, 94],
-					popupAnchor: [-3, -76],
-					shadowUrl: 'img/marker-shadow.png',
-					shadowRetinaUrl: 'img/marker-shadow.png',
-					shadowSize: [23, 28],
-					shadowAnchor: [22, 94]
-				});
-
-var iconos = {
-	 alimentacion: L.icon({
-					iconUrl: 'img/alimentacion_marker-icon.png',
-					iconRetinaUrl: 'img/alimentacion_marker-icon-2x.png',
-					iconSize: [23, 28],
-					iconAnchor: [22, 94],
-					popupAnchor: [-3, -76],
-					shadowUrl: 'img/marker-shadow.png',
-					shadowRetinaUrl: 'img/marker-shadow.png',
-					shadowSize: [23, 28],
-					shadowAnchor: [22, 94]
-				}),
-	 ropa: L.icon({
-					iconUrl: 'img/ropa_marker-icon.png',
-					iconRetinaUrl: 'img/ropa_marker-icon-2x.png',
-					iconSize: [23, 28],
-					iconAnchor: [22, 94],
-					popupAnchor: [-3, -76],
-					shadowUrl: 'img/marker-shadow.png',
-					shadowRetinaUrl: 'img/marker-shadow.png',
-					shadowSize: [23, 28],
-					shadowAnchor: [22, 94]
-				}),
-	artesania: L.icon({
-					iconUrl: 'img/ropa_marker-icon.png',
-					iconRetinaUrl: 'img/ropa_marker-icon-2x.png',
-					iconSize: [23, 28],
-					iconAnchor: [22, 94],
-					popupAnchor: [-3, -76],
-					shadowUrl: 'img/marker-shadow.png',
-					shadowRetinaUrl: 'img/marker-shadow.png',
-					shadowSize: [23, 28],
-					shadowAnchor: [22, 94]
-				}),
-	restaurantes: L.icon({
-					iconUrl: 'img/ropa_marker-icon.png',
-					iconRetinaUrl: 'img/ropa_marker-icon-2x.png',
-					iconSize: [23, 28],
-					iconAnchor: [22, 94],
-					popupAnchor: [-3, -76],
-					shadowUrl: 'img/marker-shadow.png',
-					shadowRetinaUrl: 'img/marker-shadow.png',
-					shadowSize: [23, 28],
-					shadowAnchor: [22, 94]
-				}),
-}
+var LeafIcon = L.Icon.extend({
+			options: {
+				shadowUrl: 'img/marker-shadow.png',
+				iconSize:     [38, 95],
+				shadowSize:   [50, 64],
+				iconAnchor:   [22, 94],
+				shadowAnchor: [4, 62],
+				popupAnchor:  [-3, -76]
+			}
+		});
+				
 var mapa = {
 	add_markers: function (tx, results) {
 				var len = results.rows.length;
@@ -83,10 +36,37 @@ var mapa = {
 					console.log("Vamos a añadir los marcadores");
 					for (i = 0; i < len; i++) {
 						comercio = results.rows.item(i);
-						//~ console.log("Añadimos "+comercio.id_comercio+" al mapa en ["+comercio.latitud+","+comercio.longitud+"]");
+						
 						popup_texto = "<div onclick='app.navi.pushPage(\"ficha.html\", { ficha: \"True\", comercio: \""+comercio.id_comercio+"\"})';>"+comercio.nombre+" "+comercio.telefono+"</div>";
-						//console.log(popup_texto);
-						L.marker([comercio.longitud, comercio.latitud],{icon: icono_alimentacion}).addTo(app.map).bindPopup(popup_texto);
+						var icono_alimentacion = new LeafIcon({iconUrl: 'img/alimentacion_marker-icon.png'});
+						var icono_artesania = new LeafIcon({iconUrl: 'img/artesania_marker-icon.png'});		
+						var icono_otros = new LeafIcon({iconUrl: 'img/otros_marker-icon.png'});
+						if (comercio.categoria == '1') {
+							icono_seleccionado = icono_alimentacion;
+						}
+						else if (comercio.categoria == '2') {
+							console.log("Usamos el icono de artesania "+comercio.latitud+" "+comercio.longitud);
+							icono_seleccionado = icono_artesania;
+						}
+						else if (comercio.categoria == '3') {
+							icono_seleccionado = icono_artesania;
+						}
+						else if (comercio.categoria == '4') {
+							icono_seleccionado = icono_artesania;
+						}
+						else if (comercio.categoria == '5') {
+							icono_seleccionado = icono_artesania;
+						}
+						else if (comercio.categoria == '6') {
+							icono_seleccionado = icono_artesania;
+						}
+						else if (comercio.categoria == '7') {
+							icono_seleccionado = icono_artesania;
+						}
+						else {
+							icono_seleccionado = icono_otros;
+						}
+						L.marker([comercio.latitud, comercio.longitud],{icon: icono_seleccionado}).addTo(app.map).bindPopup(popup_texto);
 					}
 					console.log("Marcadores listos");
 				}else{

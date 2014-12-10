@@ -25,7 +25,7 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         
-        <title>Hello World</title>
+        <title>Consumo Responsable</title>
 		<!--  Para el onsen  -->
 		<link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
 		<link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
@@ -36,6 +36,8 @@
 		<script src="js/leaflet.js"></script>
 		<!-- JQuery -->
 		<script src="js/jquery-1.11.1.min.js"></script>
+		<!-- facebook -->
+		<script src="//connect.facebook.net/es_ES/sdk.js#xfbml=1&appId=371506683014644&version=v2.0"></script>
 		<!-- El estilo -->
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 		
@@ -45,14 +47,8 @@
 <ons-navigator animation="slide" var="app.navi">
   <ons-page>
     <ons-toolbar>
-      <div class="center">Comercio Justo</div>
+      <div class="center">Consumo Responsable</div>
     </ons-toolbar>
-		
-		<div id="splash">
-			Somos el splash...
-		</div>
-		<br />
-		
 		<ons-row>
 		  <ons-col>
 			  <div style="text-align: center" class="desktop_icon" >
@@ -67,7 +63,7 @@
 				   <ons-button modifier="light" ng-click="app.navi.pushPage('mapa.html',{ mapa: 'True'});">
 					  <ons-icon class="desktop_icon" icon="fa-map-marker" size="64px"></ons-icon>
 				  </ons-button>
-				<br/>Mapa
+				<br/>Callejero
 			  </div>
 		  </ons-col>
 		</ons-row>
@@ -143,7 +139,7 @@
 	  <div class="left">
 		<ons-toolbar-button ng-click="app.navi.popPage('mapa.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
 	  </div>
-	  <div class="center">Mapa</div>
+	  <div class="center">Callejero</div>
 	  <div class="right">
 		  
 			<ons-toolbar-button>
@@ -188,6 +184,8 @@
 	</ons-toolbar>
 	<div>
 	Información de la licencia, quien la hecho, etc
+	
+
 	</div>
   </ons-page>
 </ons-template>
@@ -206,7 +204,11 @@
 	  <ons-list-item>Nombre:<span id="ficha_comercio_nombre"></span></ons-list-item>
 	  <ons-list-item>Telefono:<span id="ficha_comercio_telefono"></span></ons-list-item>
 	  <ons-list-item>Dirección:<span id="ficha_comercio_direccion"></span></ons-list-item>
+	  <ons-list-item>Web:<div id="ficha_comercio_web"></div></ons-list-item>
+	  <ons-list-item>Me gusta<div class="fb-like" data-href="http://pronosticadores.net/ficha.php?id=98" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true">!!</div></ons-list-item>
 	</ons-list>
+
+
 	
   </ons-page>
 </ons-template>
@@ -240,5 +242,8 @@
         <script type="text/javascript" src="js/bbdd.js"></script>
         <script type="text/javascript" src="js/mapa.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+		<script>
+		
+		</script>
     </body>
 </html>
