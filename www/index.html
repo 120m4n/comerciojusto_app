@@ -47,13 +47,13 @@
 <ons-navigator animation="slide" var="app.navi">
   <ons-page>
     <ons-toolbar>
-      <div class="center">Consumo Responsable</div>
+      <div class="center">Consumo Responsable Gasteiz</div>
     </ons-toolbar>
-		<ons-row>
+		<ons-row modifier="primera">
 		  <ons-col>
 			  <div style="text-align: center" class="desktop_icon" >
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('listado.html',{ listado: 'True'});">
-					  <ons-icon class="desktop_icon" icon="fa-list" size="4x"></ons-icon>
+<img src="img/listado.png">
 				  </ons-button>
 				<br/>Listado
 			  </div>
@@ -61,7 +61,7 @@
 		  <ons-col>
 			  <div style="text-align: center" class="desktop_icon" >
 				   <ons-button modifier="light" ng-click="app.navi.pushPage('mapa.html',{ mapa: 'True'});">
-					  <ons-icon class="desktop_icon" icon="fa-map-marker" size="64px"></ons-icon>
+<img src="img/mapa.png">
 				  </ons-button>
 				<br/>Callejero
 			  </div>
@@ -72,7 +72,7 @@
 		  <ons-col>
 			  <div style="text-align: center" class="desktop_icon" >
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('about.html');">
-					  <ons-icon class="desktop_icon" icon="fa-life-ring" size="64px"></ons-icon>
+<img src="img/info.png">
 				  </ons-button>
 				<br/> Ayuda
 			  </div>
@@ -80,9 +80,10 @@
 		  <ons-col>
 			  <div style="text-align: center" class="desktop_icon" >
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('settings.html');">
-					  <ons-icon class="desktop_icon" icon="fa-sliders" size="64px"></ons-icon>
+<img src="img/contacto.png">
 				  </ons-button>
-				<br/>Ajustes  
+				<br/>Contacto
+			 </div>
 		  </ons-col>
 		</ons-row>			
 	</ons-page>
