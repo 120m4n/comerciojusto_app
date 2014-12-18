@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <title>Consumo Responsable</title>
+		<!--  Para el onsen  -->
+		<link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
+		<link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
+		<script src="lib/onsen/js/angular/angular.js"></script>    
+		<script src="lib/onsen/js/onsenui.js"></script>    
+		<!--  Para el mapa  -->
+		<link rel="stylesheet" href="css/leaflet.css" />
+		<script src="js/leaflet.js"></script>
+		<!-- JQuery -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<!-- facebook -->
+		<script src="//connect.facebook.net/es_ES/sdk.js#xfbml=1&appId=371506683014644&version=v2.0"></script>
+		<!-- El estilo -->
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		
+    </head>
+    <body>
+		
+<ons-navigator animation="slide" var="app.navi">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Consumo Responsable Gasteiz</div>
+    </ons-toolbar>
+		<ons-row>
+		  <ons-col>
+			  <div style="text-align: center" class="desktop_icon" >
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('listado.html',{ listado: 'True'});">
+<img src="img/listado.png">
+				  </ons-button>
+				<br/>Listado
+			  </div>
+		  </ons-col>
+		  <ons-col>
+			  <div style="text-align: center" class="desktop_icon" >
+				   <ons-button modifier="light" ng-click="app.navi.pushPage('mapa.html',{ mapa: 'True'});">
+<img src="img/mapa.png">
+				  </ons-button>
+				<br/>Callejero
+			  </div>
+		  </ons-col>
+		</ons-row>
+		<br />		
+		<ons-row>
+		  <ons-col>
+			  <div style="text-align: center" class="desktop_icon" >
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('about.html');">
+<img src="img/info.png">
+				  </ons-button>
+				<br/> Ayuda
+			  </div>
+		  </ons-col>
+		  <ons-col>
+			  <div style="text-align: center" class="desktop_icon" >
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('settings.html');">
+<img src="img/contacto.png">
+				  </ons-button>
+				<br/>Contacto
+			 </div>
+		  </ons-col>
+		</ons-row>			
+	</ons-page>
+</ons-navigator>
+		  
+<ons-template id="listado.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button onclick="app.navi.popPage('listado.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Listado</div>
+	  <div class="right">
+		  
+			<ons-toolbar-button>
+				<ons-icon icon="ion-search" size="32px" fixed-width="false" onclick="app.buscar_comercio()"></ons-icon> 
+			</ons-toolbar-button>
+			
+		   
+	  </div>
+	</ons-toolbar>
+	 <select id="select_categorias" onchange="app.refrescarListaComercios();">
+		<option value="0">Todos</option>
+		<option value="1">Alimentación</option>
+		<option value="2">Artesania</option>
+		<option value="3">Ferias y mercados</option>
+		<option value="4">Limpieza</option>
+		<option value="5">Material de oficina</option>
+		<option value="6">Restarurantes y bares</option>
+		<option value="7">Ropa y Calzado</option>
+		<option value="8">Otros</option>
+	</select>
+	<div id="checkbox_etiquetas">
+		<input id="tag1" value="1" type="checkbox" onchange="app.refrescarListaComercios();">Local</input>
+		<input id="tag2" value="2" type="checkbox" onchange="app.refrescarListaComercios();">Ecológico</input>
+		<input id="tag3" value="3" type="checkbox" onchange="app.refrescarListaComercios();">Comercio Justo</input>
+		<input id="tag4" value="4" type="checkbox" onchange="app.refrescarListaComercios();">Segunda Mano</input>
+		<input id="tag5" value="5" type="checkbox" onchange="app.refrescarListaComercios();">Reparar/Reciclar</input>
+		<input id="tag6" value="6" type="checkbox" onchange="app.refrescarListaComercios();">Mujer</input>
+	</div> 
+	
+	<ons-list id="listado_comercios" >
+	  <ons-list-header>Listado de Comercios</ons-list-header>
+	  
+	</ons-list>
+
+  </ons-page>
+</ons-template>
+
+
+<ons-template id="mapa.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button ng-click="app.navi.popPage('mapa.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Callejero</div>
+	  <div class="right">
+		  
+			<ons-toolbar-button>
+				<ons-icon icon="ion-arrow-shrink" size="32px" fixed-width="false" onclick="app.buscame()"></ons-icon> 
+			</ons-toolbar-button>
+			
+		   
+	  </div>
+	</ons-toolbar>
+	<div id="map"></div>
+	
+  </ons-page>
+</ons-template>
+
+<ons-template id="settings.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button ng-click="app.navi.popPage('settings.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Configuración</div>
+	</ons-toolbar>
+	<ons-list>
+	  <ons-list-header>Opciones</ons-list-header>
+	  <ons-list-item>Versión BBDD: <span id="bbdd_version">0.0</span> &nbsp;&nbsp; </ons-list-item>
+	  <ons-list-item>Ultima Versión BBDD: <span id="bbdd_last">0.0</span> &nbsp;&nbsp; <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon> </ons-list-item>
+	  <ons-list-item>Version Aplicación <span id="app_version">0.0</span></ons-list-item>
+	  <ons-list-item>Ultima Version Aplicación <span id="app_last">0.0</span></ons-list-item>
+	  <ons-list-item>Comprobar actualizaciones <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.checkUpdates()"></ons-icon></ons-list-item>
+	  
+	</ons-list>
+		
+  </ons-page>
+</ons-template>
+<ons-template id="about.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button ng-click="app.navi.popPage('about.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Acerda de</div>
+	</ons-toolbar>
+	<div>
+	Información de la licencia, quien la hecho, etc
+	
+
+	</div>
+  </ons-page>
+</ons-template>
+
+<ons-template id="ficha.html">
+  <ons-page>
+	<ons-toolbar>
+	  <div class="left">
+		<ons-toolbar-button ng-click="app.navi.popPage('ficha.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+	  </div>
+	  <div class="center">Ficha</div>
+	  
+	</ons-toolbar>
+	<ons-list>
+	  <ons-list-header>Ficha comercio</ons-list-header>
+	  <ons-list-item>Nombre:<span id="ficha_comercio_nombre"></span></ons-list-item>
+	  <ons-list-item>Telefono:<span id="ficha_comercio_telefono"></span></ons-list-item>
+	  <ons-list-item>Dirección:<span id="ficha_comercio_direccion"></span></ons-list-item>
+	  <ons-list-item>Web:<div id="ficha_comercio_web"></div></ons-list-item>
+	  <ons-list-item>Me gusta<div class="fb-like" data-href="http://pronosticadores.net/ficha.php?id=98" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true">!!</div></ons-list-item>
+	</ons-list>
+
+
+	
+  </ons-page>
+</ons-template>
+
+
+<ons-template id="menu.html">
+  <ons-list>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('inicio.html', {closeMenu: true})">
+	  Inicio
+	</ons-list-item>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('listado.html', {closeMenu: true})">
+	  Listado
+	</ons-list-item>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('mapa.html', {closeMenu: true})">
+	  Mapa
+	</ons-list-item>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('settings.html', {closeMenu: true})">
+	  Configuración
+	</ons-list-item>
+	<ons-list-item modifier="chevron" onclick="menu.setAbovePage('about.html', {closeMenu: true})">
+	  Acerca de
+	</ons-list-item>
+  </ons-list>
+</ons-template>
+
+
+
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/bbdd.js"></script>
+        <script type="text/javascript" src="js/mapa.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script>
+		
+		</script>
+    </body>
+</html>
