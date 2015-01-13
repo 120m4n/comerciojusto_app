@@ -43,6 +43,7 @@
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/alimentacion_marker-icon-2x.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/mapTiles \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/info.png \
+/home/raul/comerciojusto_app/platforms/android/assets/www/img/check.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/marker-icon.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/logo.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/alimentacion_marker-icon.png \
