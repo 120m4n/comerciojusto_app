@@ -79,7 +79,7 @@
 		  </ons-col>
 		  <ons-col>
 			  <div style="text-align: center" class="desktop_icon" >
-				  <ons-button modifier="light" ng-click="app.navi.pushPage('settings.html');">
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('contacto.html');">
 <img src="img/contacto.png">
 				  </ons-button>
 				<br/>Contacto
@@ -105,8 +105,9 @@
 		   
 	  </div>
 	</ons-toolbar>
-	 <select id="select_categorias" onchange="app.refrescarListaComercios();">
-		<option value="0">Todos</option>
+	<form id="fListado">
+	 <select id="select_categorias"  onchange="app.refrescarListaComercios();">
+		<option class="primera" value="0">Todos</option>
 		<option value="1">Alimentación</option>
 		<option value="2">Artesania</option>
 		<option value="3">Ferias y mercados</option>
@@ -116,20 +117,48 @@
 		<option value="7">Ropa y Calzado</option>
 		<option value="8">Otros</option>
 	</select>
-	<div id="checkbox_etiquetas">
-		<input id="tag1" value="1" type="checkbox" onchange="app.refrescarListaComercios();">Local</input>
-		<input id="tag2" value="2" type="checkbox" onchange="app.refrescarListaComercios();">Ecológico</input>
-		<input id="tag3" value="3" type="checkbox" onchange="app.refrescarListaComercios();">Comercio Justo</input>
-		<input id="tag4" value="4" type="checkbox" onchange="app.refrescarListaComercios();">Segunda Mano</input>
-		<input id="tag5" value="5" type="checkbox" onchange="app.refrescarListaComercios();">Reparar/Reciclar</input>
-		<input id="tag6" value="6" type="checkbox" onchange="app.refrescarListaComercios();">Mujer</input>
-	</div> 
+<!--	<div id="checkbox_etiquetas">
 	
+	
+		<input class="custom-checkbox" id="tag1" value="1" type="checkbox" onchange="app.refrescarListaComercios();"><label>Local</label>
+		<br><input class="custom-checkbox" id="tag2" value="2" type="checkbox" onchange="app.refrescarListaComercios();"><label>Ecológico</label>
+		<br><input class="custom-checkbox" id="tag3" value="3" type="checkbox" onchange="app.refrescarListaComercios();"><label>Comercio Justo</label>
+		<br><input class="custom-checkbox" id="tag4" value="4" type="checkbox" onchange="app.refrescarListaComercios();"><label>Segunda Mano</label>
+		<br><input class="custom-checkbox" id="tag5" value="5" type="checkbox" onchange="app.refrescarListaComercios();"><label>Reparar/Reciclar</label>
+		<br><input class="custom-checkbox" id="tag6" value="6" type="checkbox" onchange="app.refrescarListaComercios();"><label>Mujer</label>
+	</div> -->
+		<div id="checkbox_etiquetas">	
+			<input type="checkbox" value="1" id="tag1"  name="tip" class="custom-checkbox" onchange="app.refrescarListaComercios();">
+			<label for="tag1">Local&nbsp;&nbsp;</label>
+			
+			<input type="checkbox" value="3" id="tag3" name="tip" class="custom-checkbox" onchange="app.refrescarListaComercios();">
+			<label for="tag3">Comercio Justo</label>
+		
+		<input type="checkbox" value="2" id="tag2" name="tip" class="custom-checkbox" onchange="app.refrescarListaComercios();">
+			<label for="tag2">Ecológico</label>
+		
+		
+		</div>
+		<div id="checkbox_etiquetas2">
+		
+			<input type="checkbox" value="6" id="tag6" name="tip" class="custom-checkbox" onchange="app.refrescarListaComercios();">
+			<label for="tag6">Mujer</label>		
+			
+			<input type="checkbox" value="4" id="tag4" name="tip" class="custom-checkbox" onchange="app.refrescarListaComercios();">
+			<label for="tag4">Segunda Mano</label>
+		
+		<input type="checkbox" value="5" id="tag5" name="tip" class="custom-checkbox" onchange="app.refrescarListaComercios();">
+			<label for="tag5">Reparar/Reciclar</label>
+		
+	   
+		</div>
+	</form>
+	<div id="list_com">
 	<ons-list id="listado_comercios" >
 	  <ons-list-header>Listado de Comercios</ons-list-header>
 	  
 	</ons-list>
-
+	</div>
   </ons-page>
 </ons-template>
 
@@ -155,23 +184,45 @@
   </ons-page>
 </ons-template>
 
-<ons-template id="settings.html">
+<ons-template id="contacto.html">
   <ons-page>
 	<ons-toolbar>
 	  <div class="left">
 		<ons-toolbar-button ng-click="app.navi.popPage('settings.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
 	  </div>
-	  <div class="center">Configuración</div>
+	  <div class="center">Contacto</div>
 	</ons-toolbar>
+<form id="contacto">
 	<ons-list>
-	  <ons-list-header>Opciones</ons-list-header>
-	  <ons-list-item>Versión BBDD: <span id="bbdd_version">0.0</span> &nbsp;&nbsp; </ons-list-item>
-	  <ons-list-item>Ultima Versión BBDD: <span id="bbdd_last">0.0</span> &nbsp;&nbsp; <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.refreshDb()"></ons-icon> </ons-list-item>
-	  <ons-list-item>Version Aplicación <span id="app_version">0.0</span></ons-list-item>
-	  <ons-list-item>Ultima Version Aplicación <span id="app_last">0.0</span></ons-list-item>
-	  <ons-list-item>Comprobar actualizaciones <ons-icon icon="fa-refresh" size="32px" fixed-width="false" onclick="app.checkUpdates()"></ons-icon></ons-list-item>
-	  
+	  <ons-list-header>Ficha comercio</ons-list-header>
+	  <ons-list-item>
+	  		<label>Email</label>
+				<input type="email" name="email" id="email" required />
+	  </ons-list-item>
+	  <ons-list-item>
+	  		<label>Asunto</label>
+				<input type="text" name="asunto" id="asunto" required />
+	  </ons-list-item>
+	  <ons-list-item>
+	  		<label>Mensaje</label>
+				<textarea name="mensaje" id="mensaje"></textarea>
+	  </ons-list-item>
+	  <ons-list-item><input type="submit" value="Enviar"/></ons-list-item>
+
 	</ons-list>
+	
+</form>
+	
+	
+			
+				
+			
+			
+			
+			 
+	
+	
+
 		
   </ons-page>
 </ons-template>
