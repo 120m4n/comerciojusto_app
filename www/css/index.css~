@@ -260,7 +260,7 @@ form#fListado select {
 
 width: 98%;
 height:60px;
-font-size: 0.8em;
+font-size: 1em;
 text-transform: lowercase;
 padding-left: 20px;
 padding-top: 20px;
@@ -270,29 +270,29 @@ padding-top: 20px;
 
 
 /*
- * Ocultarlo siendo accesible
+ * Ocultar siendo accesible los checkbox
  */
 .custom-radio, .custom-checkbox {
     clip: rect(1px 1px 1px 1px);
     clip: rect(1px, 1px, 1px, 1px);
     position: absolute;
-  width:30%;
+  	 width:30%;
 }
 
 
 /*
  * Dejar espacio a la 'label' para posicionar el checkbox hecho con pseudoelementos
  */
-.custom-radio + label, .custom-checkbox + label {
+.custom-checkbox + label {
   position: relative;
   padding-left: 60px;
   padding-top: 28px;
 
 }
 /*
- * El pseudoelemento que emulará el input
+ * El pseudoelemento que emulará el input checkbox
  */
-.custom-radio + label:before, .custom-checkbox + label:before {
+.custom-checkbox + label:before {
     content: "";
     display: inline-block;
     -moz-box-sizing: border-box;
@@ -325,10 +325,11 @@ padding-top: 20px;
     border-radius: 3px;
     border: 1px solid #aaa;
 }
+
 /*
  * Fondo para cuando se pasa el ratón por encima
  */
-.custom-radio + label:hover:before, .custom-checkbox + label:hover:before {
+.custom-checkbox + label:hover:before {
     background: #fafafa;
 }
 
@@ -336,7 +337,7 @@ padding-top: 20px;
  * Fondo para cuando se está haciendo click
  * Con filtros para ie9
  */
-.custom-radio + label:active:before, .custom-checkbox + label:active:before {
+.custom-checkbox + label:active:before {
     background: #f2f2f2;
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
     background-image: -webkit-linear-gradient(#dddddd, #ffffff);
@@ -348,39 +349,17 @@ padding-top: 20px;
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#ffffff')";
 }
 
-/*
- * Redondear el botón "radio"
- * Sobreescribimos el border-radius: 3px general
- */
-.custom-radio + label:before {
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-}
-/*
- * Mostrar un punto cuando está seleccionado el "radio"
- * Usamos box-shadow para simular un fondo gris, mientras que dejamos un pequeño 
- * espacio para el punto negro (#444), que es el fondo
- */
-.custom-radio:checked + label:before {
-    background: #444;
-    -webkit-box-shadow: 0 0 0 3px #eeeeee inset;
-    -moz-box-shadow: 0 0 0 3px #eeeeee inset;
-    box-shadow: 0 0 0 3px #eeeeee inset;
-}
+
 
 /*
  * Estilos focus para la gente que navega con el teclado, etc
  */
-.custom-radio:focus + label:before,
 .custom-checkbox:focus + label:before {
     outline: 1px dotted;
 }
 
-/* Mostrar la "X" cuando está chequeada (sólo el checkbox).
- * Podríamos usar una fuente de iconos para mostrar un tic
+/* Mostrar imagen de check cuando está chequeada (sólo el checkbox).
+ 
  */
 .custom-checkbox:checked + label:before {
     content: url(../img/check.png);
@@ -391,18 +370,18 @@ padding-top: 20px;
  * Sólo para IE 6, 7 y 8 (no soportado)
  */
 @media \0screen\,screen\9 {
-    .custom-radio,
+   
     .custom-checkbox {
         clip: auto;
         position: static;
     }
 
-    .custom-radio + label,
+    
     .custom-checkbox + label {
         padding-left: 0;
     }
 
-    .custom-radio + label:before,
+    
     .custom-checkbox + label:before {
         display: none;
     }
