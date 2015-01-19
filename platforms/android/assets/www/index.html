@@ -74,7 +74,7 @@
 				  <ons-button modifier="light" ng-click="app.navi.pushPage('about.html');">
 <img src="img/info.png">
 				  </ons-button>
-				<br/> Ayuda
+				<br/> Info
 			  </div>
 		  </ons-col>
 		  <ons-col>
@@ -213,16 +213,6 @@
 	
 </form>
 	
-	
-			
-				
-			
-			
-			
-			 
-	
-	
-
 		
   </ons-page>
 </ons-template>
@@ -232,12 +222,32 @@
 	  <div class="left">
 		<ons-toolbar-button ng-click="app.navi.popPage('about.html')"><ons-icon icon="ion-arrow-left-b" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
 	  </div>
-	  <div class="center">Acerda de</div>
+	  <div class="center">Información de ayuda</div>
 	</ons-toolbar>
-	<div>
-	Información de la licencia, quien la hecho, etc
-	
-
+	<div id="info_ayuda">
+	 <h2>CATEGORÍAS</h2>
+			<div id="ayuda_cat">
+				
+					<div class="info_ali">Elikagaiak / Alimentación</div>
+					<div class="info_ropa">Arropa eta Oinetakoak / Ropa y Calzado</div>
+					<div class="info_artesania">Artisautza / Artesanía</div>
+					<div class="info_bar">Jatetxeak eta Tabernak / Restaurantes y Bares</div>
+					<div class="info_feria">Azokak eta Merkatuak / Ferias y Mercados</div>
+					<div class="info_ofi">Bulegoko Materiala / Material de Oficina</div>
+					<div class="info_limpieza">Garbiketa / Limpieza</div>
+					<div class="info_otros">Bestelakoak / Otros</div>
+				
+			
+			</div>
+		 <h2>CLASIFICACIÓN PRODUCTOS</h2>
+			<div id="ayuda_clasi">
+				<p><img src="img/local.png"><span>Local:</span> Productos producidos en nuestro entorno. Queremos fomentar el desarrollo de la agricultura y ganadería local, y
+		reducir el impacto del transporte de mercancías y el uso abusivo de invernaderos y frigoríficos.
+				</p>
+				<p><img src="img/ecologico.png"><span>Ecológico:</span> Productos respetuosos con el medio ambiente. Queremos alimentos más sa-
+		nos y libres de transgénicos.
+				</p>
+			</div>
 	</div>
   </ons-page>
 </ons-template>

@@ -30,10 +30,13 @@
 /home/raul/comerciojusto_app/platforms/android/assets/www/fonts/YanoneKaffeesatz-Regular.ttf \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/otros_marker-icon.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/restaurante_marker-icon.png \
+/home/raul/comerciojusto_app/platforms/android/assets/www/img/mujer.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/logo.svg \
+/home/raul/comerciojusto_app/platforms/android/assets/www/img/segunda_mano.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/mercados_marker-icon.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/marker-shadow.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/mapa.png \
+/home/raul/comerciojusto_app/platforms/android/assets/www/img/ecologico.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/limpieza_marker-icon-2x.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/mercados_marker-icon-2x.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/icon_36.png \
@@ -42,6 +45,7 @@
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/icon_48.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/alimentacion_marker-icon-2x.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/mapTiles \
+/home/raul/comerciojusto_app/platforms/android/assets/www/img/comercio_justo.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/info.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/check.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/marker-icon.png \
@@ -53,11 +57,13 @@
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/contacto.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/oficina_marker-icon.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/restaurante_marker-icon-2x.png \
+/home/raul/comerciojusto_app/platforms/android/assets/www/img/local.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/icon.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/layers.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/otros_marker-icon-2x.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/marker-icon-2x.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/listado.png \
+/home/raul/comerciojusto_app/platforms/android/assets/www/img/reparar_reciclar.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/artesania_marker-icon-2x.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/icon_72.png \
 /home/raul/comerciojusto_app/platforms/android/assets/www/img/ropa_marker-icon.png \
