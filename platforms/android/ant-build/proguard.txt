@@ -1,3 +1,0 @@
-# view AndroidManifest.xml #generated:6
--keep class net.etxea.consumoresponsable.CordovaApp { <init>(...); }
-
