@@ -182,6 +182,7 @@ h1 {
 #map { 
 	width: 100%; 
 	height: 490px; 
+	top: 35px;
 }
 
 /* pagina de información*/
