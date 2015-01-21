@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="net.etxea.consumoresponsable" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Consumo Responsable</name>
+<widget id="net.etxea.callejeroresponsable" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Callejero Responsable Gasteiz</name>
     <description>
         Aplicación con callejero para conocer los comercios que promueven el consumo responsable en Vitoria/Gasteiz, Alava.
     </description>
