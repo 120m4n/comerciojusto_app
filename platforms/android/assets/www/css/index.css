@@ -191,8 +191,21 @@ h1 {
 
 width: 100%;
 float: left;
-margin-top: 40px;
 
+
+}
+
+h2#info_ayuda_cat{
+
+margin-top: 50px;
+
+}
+
+#info_ayuda h2{
+
+	text-align: center;
+	font-size: 1.6em;
+	font-weight: bold;
 }
 
 #ayuda_cat{
@@ -201,6 +214,7 @@ margin-top: 40px;
 	float: left;
 	text-align: center;
 	color:white;
+	margin-top: -10px;
 
 }
 
@@ -208,6 +222,7 @@ margin-top: 40px;
 
 	padding-top: 10px;
 	padding-bottom: 10px;
+
 
 }
 
@@ -264,6 +279,34 @@ background:#C41F40;
 
 width:100%;
 float: left;
+
+
+}
+
+#ayuda_clasi p {
+
+		color:black;
+		text-transform: lowercase;
+}
+
+#ayuda_clasi p#clasi1 {
+
+		margin-top: -20px;
+}
+
+#ayuda_clasi p span{
+
+		color:#78cd6a;
+		font-weight: bold;
+		font-size: 1.2em;
+		padding-right: 10px;
+		text-transform: uppercase;
+}
+
+
+#ayuda_clasi p img{
+
+	padding: 10px;
 
 }
 
