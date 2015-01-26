@@ -37,6 +37,10 @@ var app = {
     onDeviceReady: function() {
 		//inicializamos BBDD
 		bbdd.initialize();
+		//inicialiamos FB
+		console.log("Llamamos a fb init");
+		facebook.initialize();
+		console.log("fb init listo");
 		//Iniciamos ons
 		//~ console.log("Iniciamos ONS");
 		ons.bootstrap();
