@@ -86,6 +86,11 @@ body {
     }
 }
 
+
+@media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2), (min--moz-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-device-pixel-ratio: 2), (min-resolution: 2dppx) { 
+/*Your code for high res screens here */ 
+}
+
 h1 {
     color: #78cd6a;
     font-size:24px;
@@ -214,6 +219,7 @@ margin-top: 50px;
 	float: left;
 	text-align: center;
 	color:white;
+	margin-top: -10px;
 
 }
 
@@ -286,6 +292,11 @@ float: left;
 
 		color:black;
 		text-transform: lowercase;
+}
+
+#ayuda_clasi p#clasi1 {
+
+		margin-top: -20px;
 }
 
 #ayuda_clasi p span{
