@@ -100,7 +100,7 @@
         "com.phonegap.plugins.facebookconnect": {
             "APP_ID": "371506683014644",
             "APP_NAME": "ConsumoResponsable",
-            "PACKAGE_NAME": "net.etxea.consumoresponsable"
+            "PACKAGE_NAME": "net.etxea.callejeroresponsable"
         }
     },
     "dependent_plugins": {}
