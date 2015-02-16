@@ -7,14 +7,6 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
-    <feature name="FacebookConnectPlugin">
-        <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
-    </feature>
-    <access origin="https://m.facebook.com" />
-    <access origin="https://graph.facebook.com" />
-    <access origin="https://api.facebook.com" />
-    <access origin="https://*.fbcdn.net" />
-    <access origin="https://*.akamaihd.net" />
     <splash density="land-hdpi" src="res/screen/android/splash-land-hdpi.png" />
     <splash density="land-ldpi" src="res/screen/android/splash-land-ldpi.png" />
     <splash density="land-mdpi" src="res/screen/android/splash-land-mdpi.png" />
