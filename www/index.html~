@@ -75,7 +75,7 @@
 		<ons-row>
 		  <ons-col>
 			  <div style="text-align: center" class="desktop_icon" >
-				  <ons-button modifier="light" ng-click="app.navi.pushPage('about.html');">
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('about.html',{ info: 'True'});">
 <img src="img/info.png">
 				  </ons-button>
 				<br/> Info
@@ -196,7 +196,7 @@
 	  </div>
 	  <div class="center">Contacto</div>
 	</ons-toolbar>
-<form id="contacto">
+
 	<ons-list>
 	  <ons-list-header>Ficha comercio</ons-list-header>
 	  <ons-list-item>
@@ -215,7 +215,7 @@
 
 	</ons-list>
 	 <div id="resultado"></div>
-</form>
+
 	
 		
   </ons-page>
@@ -264,6 +264,8 @@ nuestras cosas reciclando o reparando.
 				<p><img src="img/mujer.png"><span>Mujer:</span>Queremos visibilizar aquellas iniciativas que son impulsadas por mujeres.
 				</p>
 			</div>
+			<h2>Facebook</h2>
+			<div id="facebook_div"></div>
 			<h2>Facebook test</h2>
 			<div class="event listening button" onclick="facebook.login();">Login with Facebook</div>
 			<div class="event listening button" onclick="facebook.showDialog();">Show Dialog with Facebook</div>
