@@ -38,8 +38,8 @@ var app = {
 		//inicializamos BBDD
 		bbdd.initialize();
 		//inicialiamos FB
-		console.log("Llamamos a fb init");
-		facebook.initialize();
+		//console.log("Llamamos a fb init");
+		//facebook.initialize();
 		console.log("fb init listo");
 		//Iniciamos ons
 		//~ console.log("Iniciamos ONS");
@@ -71,6 +71,11 @@ var app = {
 		}
 		if (page.options.listado) {
 			app.refrescarListaComercios();
+		}
+		if (page.options.info) {
+			console.log("Somo la página de info");
+			console.log("Inicializamos FB");
+			facebook.initialize();
 		}
 		if (page.options.ficha) {
 			console.log("Cargamos los datos del comercio: "+page.options.comercio);
