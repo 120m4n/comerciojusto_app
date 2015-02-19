@@ -619,7 +619,16 @@ padding-top: 20px;
 
 @media (min-resolution: 192dpi) { 
 
-
+	form#fListado select {
+	width: 98%;
+	color: #78cd6a;
+	background-color: #E6EBE7;
+	margin-top: 40px;
+	font-size: 1.6em;
+	
+}	
+	
+	
 	#checkbox_etiquetas,#checkbox_etiquetas2{
 
 		width: 98%;
@@ -679,6 +688,76 @@ padding-top: 20px;
 
 
 }
+
+
+/*  FICHA COMERCIO */
+
+
+#comercio_nombre{
+
+width: 60%;
+float: left;
+padding-top: 30px;
+
+}
+
+.circles{
+
+	margin-top: 30px;
+	height: 50px;
+	float: left;
+	width: 35%;
+
+}
+
+.circle_alimentacion{
+	
+	background: url(../img/alimentacion_circle.png) no-repeat;
+
+}
+
+.circle_ropa{
+	
+	background: url(../img/ropa_circle.png) no-repeat;
+
+}
+
+.circle_artesania{
+	
+	background: url(../img/artesania_circle.png) no-repeat;
+
+}
+
+.circle_bares{
+	
+	background: url(../img/bares_circle.png) no-repeat;
+
+}
+
+.circle_ferias{
+	
+	background: url(../img/ferias_circle.png) no-repeat;
+
+}
+
+.circle_oficina{
+	
+	background: url(../img/oficina_circle.png) no-repeat;
+
+}
+
+.circle_limpieza{
+	
+	background: url(../img/limpieza_circle.png) no-repeat;
+
+}
+
+.circle_otros{
+	
+	background: url(../img/otros_circle.png) no-repeat;
+
+}
+
 
 
 /*

@@ -690,6 +690,76 @@ padding-top: 20px;
 }
 
 
+/*  FICHA COMERCIO */
+
+
+#comercio_nombre{
+
+width: 60%;
+float: left;
+padding-top: 30px;
+
+}
+
+.circles{
+
+	margin-top: 15px;
+	height: 50px;
+	float: left;
+	width: 35%;
+
+}
+
+.circle_alimentacion{
+	
+	background: url(../img/alimentacion_circle.png) no-repeat;
+
+}
+
+.circle_ropa{
+	
+	background: url(../img/ropa_circle.png) no-repeat;
+
+}
+
+.circle_artesania{
+	
+	background: url(../img/artesania_circle.png) no-repeat;
+
+}
+
+.circle_bares{
+	
+	background: url(../img/bares_circle.png) no-repeat;
+
+}
+
+.circle_ferias{
+	
+	background: url(../img/ferias_circle.png) no-repeat;
+
+}
+
+.circle_oficina{
+	
+	background: url(../img/oficina_circle.png) no-repeat;
+
+}
+
+.circle_limpieza{
+	
+	background: url(../img/limpieza_circle.png) no-repeat;
+
+}
+
+.circle_otros{
+	
+	background: url(../img/otros_circle.png) no-repeat;
+
+}
+
+
+
 /*
  * Sólo para IE 6, 7 y 8 (no soportado)
  */

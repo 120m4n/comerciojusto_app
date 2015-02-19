@@ -184,7 +184,46 @@ var bbdd = {
 				if (results.rows.length>0) {
 					console.log("Vamos a rellenar la ficha");
 					comercio = results.rows.item(0);
-					console.log("Añadimos "+comercio.id_comercio+" "+comercio.nombre);
+					console.log("Añadimos "+comercio.id_comercio+" "+comercio.nombre+"categoria es "+comercio.categoria);
+					$("#ficha_info_grafica").addClass("circles");
+					switch(comercio.categoria) {
+						
+						case "1":
+							console.log("Añadimos clase circle alimentacion");
+							$("#ficha_info_grafica").addClass("circle_alimentacion");
+							break;
+						
+						case "2":
+							$("#ficha_info_grafica").addClass("circle_artesania");
+							break;
+						
+						case "3":
+							$("#ficha_info_grafica").addClass("circle_ferias");
+							break;
+						
+						case "4":
+							$("#ficha_info_grafica").addClass("circle_limpieza");
+							break;
+						
+						case "5":
+							$("#ficha_info_grafica").addClass("circle_oficina");
+							break;
+						
+						case "6":
+							$("#ficha_info_grafica").addClass("circle_bares");
+							break;
+						
+						case "7":
+							$("#ficha_info_grafica").addClass("circle_ropa");
+							break;
+						
+						case "8":
+							$("#ficha_info_grafica").addClass("circle_otros");
+							break;
+												
+							
+					
+					}
 					$("#ficha_comercio_nombre").text(comercio.nombre);
 					$("#ficha_comercio_direccion").text(comercio.direccion);
 					$("#ficha_comercio_telefono").text(comercio.telefono);
