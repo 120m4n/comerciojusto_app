@@ -34,10 +34,15 @@ var mapa = {
 				console.log("Hemos encontrado "+len+" comercios");		
 				if (len>0) {
 					console.log("Vamos a añadir los marcadores");
+					
 					for (i = 0; i < len; i++) {
 						comercio = results.rows.item(i);
+						if (len=1) {
+							popup_texto = "<div>"+comercio.nombre+" "+comercio.telefono+"<br /><a href='geo:"+comercio.direccion+" vitoria spain' />"+comercio.direccion+"</div>";
+						} else {
+							popup_texto = "<div onclick='app.navi.pushPage(\"ficha.html\", { ficha: \"True\", comercio: \""+comercio.id_comercio+"\"})';>"+comercio.nombre+" "+comercio.telefono+"</div>";
+						}
 						
-						popup_texto = "<div onclick='app.navi.pushPage(\"ficha.html\", { ficha: \"True\", comercio: \""+comercio.id_comercio+"\"})';>"+comercio.nombre+" "+comercio.telefono+"</div>";
 						var icono_alimentacion = new LeafIcon({
 							iconUrl: 'img/alimentacion_marker-icon.png',
 							iconRetinaUrl: 'img/alimentacion_marker-icon-2x.png',
@@ -95,6 +100,10 @@ var mapa = {
 							icono_seleccionado = icono_otros;
 						}
 						L.marker([comercio.latitud, comercio.longitud],{icon: icono_seleccionado}).addTo(app.map).bindPopup(popup_texto);
+						if (len==1) { 
+							console.log("Como solo tenemos un elemento centramos el mapa en el");
+							app.map.setView(new L.LatLng(comercio.latitud, comercio.longitud), 16);
+						}
 					}
 					console.log("Marcadores listos");
 				}else{

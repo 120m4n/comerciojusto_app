@@ -184,47 +184,31 @@ var bbdd = {
 				if (results.rows.length>0) {
 					console.log("Vamos a rellenar la ficha");
 					comercio = results.rows.item(0);
-					console.log("Añadimos "+comercio.id_comercio+" "+comercio.nombre+"categoria es "+comercio.categoria+"tipo producto"+comercio.etiqueta_1);
+					console.log("Añadimos "+comercio.id_comercio+" "+comercio.nombre+"categoria es "+comercio.categoria+"tipo producto "+comercio.etiqueta_1);
+					
 					$("#ficha_info_grafica").addClass("circles");
-
+					console.log("Añadimos las etiquetas");
 					if(comercio.etiqueta_1 == 1){
-						
 						console.log("Añadimos span con clase tLocal");
 					   $("#ficha_info_grafica").append("<span class='tLocal'>local</span>");
-					
 					}
-					
-					if(comercio.etiqueta_2 == 1){
-						
+					if(comercio.etiqueta_2 == 1){	
 					   $("#ficha_info_grafica").append("<span class='tEcologico'>ecologico</span>");
-					
 					}	
-					
 					if(comercio.etiqueta_3 == 1){
-						
 					   $("#ficha_info_grafica").append("<span class='tComercio'>comercio</span>");
-					
 					}	
-					
 					if(comercio.etiqueta_4 == 1){
-						
 					   $("#ficha_info_grafica").append("<span class='tSegunda'>segunda</span>");
-					
 					}	
-					
 					if(comercio.etiqueta_5 == 1){
-						
 					   $("#ficha_info_grafica").append("<span class='tReparar'>reparar</span>");
-					
 					}				
-					
 					if(comercio.etiqueta_6 == 1){
-						
 					   $("#ficha_info_grafica").append("<span class='tMujer'>mujer</span>");
-					
 					}	
+					console.log("Ponemos la categoria");
 					switch(comercio.categoria) {
-						
 						case "1":
 							console.log("Añadimos clase circle alimentacion");
 							$("#ficha_info_grafica").addClass("circle_alimentacion");
@@ -257,14 +241,12 @@ var bbdd = {
 						case "8":
 							$("#ficha_info_grafica").addClass("circle_otros");
 							break;
-												
-							
-					
 					}
+					console.log("Rellenamos los textos");
 					$("#ficha_comercio_nombre").text(comercio.nombre);
 					$("#ficha_comercio_direccion").text(comercio.direccion);
 					$("#ficha_comercio_telefono").text(comercio.telefono);
-					$("#ficha_comercio_web").html("<a href='http://pronosticadores.net/ficha.php?id="+comercio.id_comercio+"'>web</a>");
+					$("#ficha_ver_comercio_mapa").html('<span onclick="app.navi.pushPage(\'mapa.html\',{ mapa: \'True\',comercio_id: \''+comercio.id_comercio+'\'});" >Ver en el mapa </span>');
 				}else{
 					console.log("Sin resultados");
 				}

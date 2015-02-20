@@ -75,7 +75,7 @@ var app = {
 		//~ console.log("somos post push");
 		var page = app.navi.getCurrentPage();
 		if (page.options.mapa) {
-			app.initializeMap();
+			app.initializeMap(page.options.comercio_id);
 		}
 		if (page.options.listado) {
 			app.refrescarListaComercios();
@@ -117,26 +117,11 @@ var app = {
 		}
 		if (page.options.ficha) {
 			console.log("Cargamos los datos del comercio: "+page.options.comercio);
-			bbdd.cargarComercio(page.options.comercio);
-			  window.fbAsyncInit = function() {
-			FB.init({
-			  appId      : '371506683014644',
-			  xfbml      : true,
-			  version    : 'v2.1'
-			});
-		  };
-
-		  (function(d, s, id){
-			 var js, fjs = d.getElementsByTagName(s)[0];
-			 if (d.getElementById(id)) {return;}
-			 js = d.createElement(s); js.id = id;
-			 js.src = "//connect.facebook.net/en_US/sdk.js";
-			 fjs.parentNode.insertBefore(js, fjs);
-		   }(document, 'script', 'facebook-jssdk'));
+			bbdd.cargarComercio(page.options.comercio);  
 		}
 	},
 	// FUNCIONES MAPA //
-	initializeMap: function () {
+	initializeMap: function (comercio_id) {
 		//~ console.log("Iniciamos el mapa");
 		
 		alto = $(window).height()
@@ -150,8 +135,13 @@ var app = {
 		var osm = new L.TileLayer(osmUrl, { attribution: osmAttrib });
 		app.map.setView(new L.LatLng(42.847363,-2.6734835), 13);
 		app.map.addLayer(osm);
-		
-		consulta = "SELECT id_comercio,categoria,nombre,direccion,latitud,longitud,telefono FROM comercios";
+		if (typeof comercio_id == "undefined") {
+			console.log("Buscamos todos los comercios");
+			consulta = "SELECT id_comercio,categoria,nombre,direccion,latitud,longitud,telefono FROM comercios";
+		} else {
+			console.log("Solo vamos a mostrar el comercio con ID"+comercio_id);
+			consulta = "SELECT id_comercio,categoria,nombre,direccion,latitud,longitud,telefono FROM comercios WHERE id_comercio = "+comercio_id+"";
+		}
 		bbdd.db.transaction(function(tx){
 			tx.executeSql(consulta, [],mapa.add_markers,function(tx,error){console.log("Error leyendo de BBDD: "+error.message)});
 		});
