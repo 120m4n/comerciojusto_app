@@ -313,7 +313,7 @@ float: left;
 }
 
 
-form#contacto{
+form#email{
 
 	width: 98%;
 	height:auto;
@@ -325,7 +325,7 @@ form#contacto{
 }
 
 
-form#contacto input{
+form#email input{
 
 	width:98%;
 	height:40px;
@@ -335,7 +335,7 @@ form#contacto input{
 }
 
 
-form#contacto textarea{
+form#email textarea{
 
 	width:98%;
 	height:100px;
@@ -346,7 +346,7 @@ form#contacto textarea{
 
 }
 
-form#contacto input[type=submit]{
+form#email input[type=submit]{
 
 	background-color: #78cd6a;
 	height:50px;
@@ -357,7 +357,7 @@ form#contacto input[type=submit]{
 	font-size: 1.5em;
 }
 
-form#contacto input:focus, form#contacto textarea:focus{
+form#email input:focus, form#contacto textarea:focus{
 
 	border:2px solid #78cd6a;
 
@@ -703,7 +703,7 @@ padding-top: 30px;
 
 .circles{
 
-	margin-top: 30px;
+	margin-top: 15px;
 	height: 50px;
 	float: left;
 	width: 35%;

@@ -83,7 +83,7 @@
 		  </ons-col>
 		  <ons-col>
 			  <div style="text-align: center" class="desktop_icon" >
-				  <ons-button modifier="light" ng-click="app.navi.pushPage('contacto.html');">
+				  <ons-button modifier="light" ng-click="app.navi.pushPage('contacto.html',{ contacto: 'True'});">
 <img src="img/contacto.png">
 				  </ons-button>
 				<br/>Contacto
@@ -199,6 +199,7 @@
 
 	<ons-list>
 	  <ons-list-header>Ficha comercio</ons-list-header>
+	  <form id="mail">
 	  <ons-list-item>
 	  		<label>Email</label>
 				<input type="email" name="email" id="email" required />
@@ -212,7 +213,7 @@
 				<textarea name="mensaje" id="mensaje"></textarea>
 	  </ons-list-item>
 	  <ons-list-item>	  <input id="contacto"  type="button" value="Enviar"/></ons-list-item>
-
+		</form>
 	</ons-list>
 	 <div id="resultado"></div>
 
@@ -334,39 +335,7 @@ nuestras cosas reciclando o reparando.
         <script type="text/javascript" src="js/index.js"></script>
 		<script>
 		
-		
-function jsonCallback(json) {
-	console.log(json);
-	
-	if (json.validacion == "ok"){
-	$("#resultado").html("enviado");
-	}
-}
 
-$('#contacto').click(function() {
-	// recolecta los valores que inserto el usuario
-		
-				var parametros = {
-            asunto :$("#asunto").val(),
-				email: $("#email").val(),
-				mensa :$("#mensaje").val()
-        };
-        $.ajax({
-                data:  parametros,
-                url:   'http://consumoresponsable.info/app-admin/mailer/contacto.php',
-                type:  'POST',
-                dataType:'jsonp',
-                jsonpCallback:'jsonCallback',
-                
-                beforeSend: function () {
-                        $("#resultado").html("Procesando, espere por favor...");
-                }
-                
-                
-                
-        });
-        
-     });
 </script>
     </body>
 </html>

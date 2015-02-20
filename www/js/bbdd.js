@@ -184,8 +184,45 @@ var bbdd = {
 				if (results.rows.length>0) {
 					console.log("Vamos a rellenar la ficha");
 					comercio = results.rows.item(0);
-					console.log("Añadimos "+comercio.id_comercio+" "+comercio.nombre+"categoria es "+comercio.categoria);
+					console.log("Añadimos "+comercio.id_comercio+" "+comercio.nombre+"categoria es "+comercio.categoria+"tipo producto"+comercio.etiqueta_1);
 					$("#ficha_info_grafica").addClass("circles");
+
+					if(comercio.etiqueta_1 == 1){
+						
+						console.log("Añadimos span con clase tLocal");
+					   $("#ficha_info_grafica").append("<span class='tLocal'>local</span>");
+					
+					}
+					
+					if(comercio.etiqueta_2 == 1){
+						
+					   $("#ficha_info_grafica").append("<span class='tEcologico'>ecologico</span>");
+					
+					}	
+					
+					if(comercio.etiqueta_3 == 1){
+						
+					   $("#ficha_info_grafica").append("<span class='tComercio'>comercio</span>");
+					
+					}	
+					
+					if(comercio.etiqueta_4 == 1){
+						
+					   $("#ficha_info_grafica").append("<span class='tSegunda'>segunda</span>");
+					
+					}	
+					
+					if(comercio.etiqueta_5 == 1){
+						
+					   $("#ficha_info_grafica").append("<span class='tReparar'>reparar</span>");
+					
+					}				
+					
+					if(comercio.etiqueta_6 == 1){
+						
+					   $("#ficha_info_grafica").append("<span class='tMujer'>mujer</span>");
+					
+					}	
 					switch(comercio.categoria) {
 						
 						case "1":

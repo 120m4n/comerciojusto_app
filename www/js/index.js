@@ -17,6 +17,14 @@
  * under the License.
  */
 
+function jsonCallback(json) {
+					console.log(json);
+					
+					if (json.validacion == "ok"){
+					$("#resultado").html("enviado");
+					}
+				}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -76,6 +84,36 @@ var app = {
 			console.log("Somo la página de info");
 			console.log("Inicializamos FB");
 			facebook.initialize();
+		}
+		if (page.options.contacto) {
+					
+				
+				
+				$('#contacto').click(function() {
+					// recolecta los valores que inserto el usuario
+						console.log("entramos en la funcion mail ajax")
+								var parametros = {
+				            asunto :$("#asunto").val(),
+								email: $("#email").val(),
+								mensa :$("#mensaje").val()
+				        };
+				        						console.log("leyendo el email"+parametros.email+"y asubnto"+parametros.asunto);
+				        $.ajax({
+				                data:  parametros,
+				                url:   'http://consumoresponsable.info/app-admin/mailer/contacto.php',
+				                type:  'POST',
+				                dataType:'jsonp',
+				                jsonpCallback:'jsonCallback',
+				                
+				                beforeSend: function () {
+				                        $("#resultado").html("Procesando, espere por favor...");
+				                }
+				                
+				                
+				                
+				        });
+				        
+				     });
 		}
 		if (page.options.ficha) {
 			console.log("Cargamos los datos del comercio: "+page.options.comercio);
