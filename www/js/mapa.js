@@ -38,7 +38,8 @@ var mapa = {
 					for (i = 0; i < len; i++) {
 						comercio = results.rows.item(i);
 						if (len=1) {
-							popup_texto = "<div>"+comercio.nombre+" "+comercio.telefono+"<br /><a href='geo:"+comercio.direccion+" vitoria spain' />"+comercio.direccion+"</div>";
+							console.log("geo:"+comercio.latitud+","+comercio.longitud);
+							popup_texto = "<div id='popupmapasolouncomercio'>"+comercio.nombre+" "+comercio.telefono+"<br /><a href='geo:"+comercio.latitud+","+comercio.longitud+"'/>"+comercio.direccion+"</div>";
 						} else {
 							popup_texto = "<div onclick='app.navi.pushPage(\"ficha.html\", { ficha: \"True\", comercio: \""+comercio.id_comercio+"\"})';>"+comercio.nombre+" "+comercio.telefono+"</div>";
 						}
