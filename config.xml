@@ -13,5 +13,9 @@
     <preference name="SplashScreenDelay" value="3000" />
 	<preference name="auto-hide-splash-screen" value="false" />
 	<preference name="SplashScreen" value="screen" />
+    <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.8.0">
+        <param name="APP_ID" value="371506683014644" />
+        <param name="APP_NAME" value="ConsumoResponsable" />
+    </gap:plugin>
 	
 </widget>

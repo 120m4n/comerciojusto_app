@@ -117,7 +117,9 @@ var app = {
 		}
 		if (page.options.ficha) {
 			console.log("Cargamos los datos del comercio: "+page.options.comercio);
-			bbdd.cargarComercio(page.options.comercio);  
+			bbdd.cargarComercio(page.options.comercio);
+			console.log("Inicializamos FB");
+			facebook.initialize();  
 		}
 	},
 	// FUNCIONES MAPA //

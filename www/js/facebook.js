@@ -16,11 +16,11 @@ var facebook = {
 				console.log(response.status);
 				if (response.status == "connected") { 
 					console.log("Estamos logeados");
-					$("#facebook_div").text("Me gusta!");
+					$("#facebook_div").html('Di que <span class="ion-thumbsup" ></span>');
 					$("#facebook_div").click( function() {facebook.like();});
 				} else {
 					console.log("No Estamos logeados, mostramos el icono de hacer login")
-					$("#facebook_div").text("Login en facebook");
+					$("#facebook_div").html('Entra en <span class="ion-social-facebook"></span>');
 					$("#facebook_div").click( function() {facebook.login();});
 				}
 			},
@@ -38,7 +38,7 @@ var facebook = {
 			appId="371506683014644";
 			facebookConnectPlugin.browserInit(appId);
 		}
-		facebookConnectPlugin.login( ["email","publish_actions"],
+		facebookConnectPlugin.login( ["email"],
 			function (response) { 
 				//~ alert(JSON.stringify(response))
 				console.log("Login OK");
@@ -57,13 +57,19 @@ var facebook = {
 		console.log("Primero buscamos el token");
 		facebookConnectPlugin.getAccessToken(
 			function (token) { 
-				console.log("tenemos el token:");
+				console.log("Tenemos el token:");
 				URL_TO_LIKE="http://www.etxea.net";
+				URL_TO_POST="https://graph.facebook.com/me/og.likes?access_token="+token+"&object="+URL_TO_LIKE
+				console.log("Lanzmaos el post a:" + URL_TO_POST)
 				console.log(JSON.stringify(token));
-				$.post( "https://graph.facebook.com/me/og.likes?access_token="+token+"&object="+URL_TO_LIKE, function( data ) {
+				console.log("Hacemos post al like");
+				$.post(URL_TO_POST, function( data ) {
 					console.log("hemos hecho el post")
 					console.log(data);
+				}).fail(function() {
+					console.log("Error en el POST del like");
 				});
+				console.log("POST lanzado, pero no sabemos si OK");
 			},
 			function (response) { 
 				console.log("Ha fallado el getAccesToken");
