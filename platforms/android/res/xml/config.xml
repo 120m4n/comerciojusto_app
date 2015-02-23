@@ -21,4 +21,7 @@
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="auto-hide-splash-screen" value="false" />
     <preference name="SplashScreen" value="screen" />
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
 </widget>

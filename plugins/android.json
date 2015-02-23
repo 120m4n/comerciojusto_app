@@ -31,6 +31,10 @@
                         {
                             "xml": "<access origin=\"https://*.akamaihd.net\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -60,6 +64,12 @@
                             "xml": "<activity android:label=\"@string/fb_app_name\" android:name=\"com.facebook.LoginActivity\" android:theme=\"@android:style/Theme.Translucent.NoTitleBar\" />",
                             "count": 1
                         }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        }
                     ]
                 }
             }
@@ -69,6 +79,9 @@
         "com.phonegap.plugins.facebookconnect": {
             "APP_ID": "371506683014644",
             "APP_NAME": "ConsumoResponsable",
+            "PACKAGE_NAME": "net.etxea.callejeroresponsable"
+        },
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "net.etxea.callejeroresponsable"
         }
     },
