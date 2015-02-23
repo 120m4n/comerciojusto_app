@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="net.etxea.callejeroresponsable" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <name>Callejero Responsable Gasteiz</name>
+    <description>
+        Aplicación con callejero para conocer los comercios que promueven el consumo responsable en Vitoria/Gasteiz, Alava.
+    </description>
+    <author email="info@etxea.net" href="http://www.etxea.net">
+        Etxea Soluciones TIC
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="auto-hide-splash-screen" value="false" />
+    <preference name="SplashScreen" value="screen" />
+    <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.8.0">
+        <param name="APP_ID" value="371506683014644" />
+        <param name="APP_NAME" value="ConsumoResponsable" />
+    </gap:plugin>
+    <feature name="FacebookConnectPlugin">
+        <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+    </feature>
+    <access origin="https://m.facebook.com" />
+    <access origin="https://graph.facebook.com" />
+    <access origin="https://api.facebook.com" />
+    <access origin="https://*.fbcdn.net" />
+    <access origin="https://*.akamaihd.net" />
+</widget>

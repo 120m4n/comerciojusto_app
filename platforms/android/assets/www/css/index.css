@@ -1,0 +1,782 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+ 
+ 
+ @font-face {
+font-family: "YanoneKaffeesatz";
+src: url(../fonts/YanoneKaffeesatz-Regular.ttf) format("truetype");
+}
+ 
+ 
+ 
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* set img max-width */
+img {
+	max-width: 100%;
+	height: auto;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E6EBE7;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
+    font-family:'YanoneKaffeesatz', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+
+
+h1 {
+    color: #78cd6a;
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+/* Personalización de onsense */
+.page {
+  font-family: 'YanoneKaffeesatz', Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  background-color: #E6EBE7;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: visible;
+  font-size: 2em;
+  color: #78cd6a;
+  width: 100%;
+}
+.navigation-bar {
+	background-color: #3C3B37;
+	color: whitesmoke;
+	height:80px;
+	padding-top: 20px;
+	
+}
+.navigation-bar__title {
+	color: whitesmoke;
+	font-size: 1em;
+	text-align: left;
+	background: url(../img/icon_48.png) no-repeat 10px center;
+	padding-left: 70px;
+}
+
+.row{
+	margin-top: 50px;
+}
+
+#splash {
+	position: absolute;
+	z-index: 100000;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	width: 100%;
+	height: 10000px;
+}
+
+
+#map { 
+	width: 100%; 
+	height: 490px; 
+	top: 35px;
+}
+
+/* pagina de información*/
+
+#info_ayuda{
+
+width: 100%;
+float: left;
+
+
+}
+
+h2#info_ayuda_cat{
+
+margin-top: 50px;
+
+}
+
+#info_ayuda h2{
+
+	text-align: center;
+	font-size: 1.6em;
+	font-weight: bold;
+}
+
+#ayuda_cat{
+	
+	width:100%;
+	float: left;
+	text-align: center;
+	color:white;
+	margin-top: -10px;
+
+}
+
+#ayuda_cat div{
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+
+}
+
+#ayuda_cat .info_ali{
+
+background:#BF359A;
+
+}
+
+#ayuda_cat .info_ropa{
+
+background:#664491;
+
+}
+
+#ayuda_cat .info_artesania{
+
+background:#F35B4B;
+
+}
+
+#ayuda_cat .info_bar{
+
+background:#1D8270;
+
+}
+
+#ayuda_cat .info_feria{
+
+background:#B3DD31;
+
+}
+
+#ayuda_cat .info_ofi{
+
+background:#F9A642;
+
+}
+
+#ayuda_cat .info_limpieza{
+
+background:#6EC84B;
+
+}
+
+#ayuda_cat .info_otros{
+
+background:#C41F40;
+
+}
+
+
+#ayuda_clasi{
+
+width:100%;
+float: left;
+
+
+}
+
+#ayuda_clasi p {
+
+		color:black;
+		text-transform: lowercase;
+}
+
+#ayuda_clasi p#clasi1 {
+
+		margin-top: -20px;
+}
+
+#ayuda_clasi p span{
+
+		color:#78cd6a;
+		font-weight: bold;
+		font-size: 1.2em;
+		padding-right: 10px;
+		text-transform: uppercase;
+}
+
+
+#ayuda_clasi p img{
+
+	padding: 10px;
+
+}
+
+
+form#mail{
+
+	width: 98%;
+	height:auto;
+	margin: 0 auto;
+	padding: 0 1%;
+	box-shadow: 5px 5px 0 #AAA;
+	border-radius:5px; 
+
+}
+
+
+form#mail input{
+
+	width:98%;
+	height:40px;
+	margin:5px 0 10px 0;
+	font-size: 1.5em;
+
+}
+
+
+form#mail textarea{
+
+	width:98%;
+	height:100px;
+	margin:5px 0 10px 0;
+	font-size: 1.5em;
+	border:2px inset;
+	
+
+}
+
+form#mail input[type=submit]{
+
+	background-color: #78cd6a;
+	height:50px;
+	width:98%;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color:#FFFFFF;
+	font-size: 1.5em;
+}
+
+form#mail input:focus, form#contacto textarea:focus{
+
+	border:2px solid #78cd6a;
+
+
+}
+
+.desktop_icon {
+	
+	color: #78cd6a;
+	font-size: 2em;
+	
+}
+
+.button--light {
+ border: 0px;
+ }
+
+form#fListado select {
+	width: 98%;
+	color: #78cd6a;
+	background-color: #E6EBE7;
+	margin-top: 40px;
+	font-size: 2em;
+	
+}
+
+#checkbox_etiquetas,#checkbox_etiquetas2{
+
+width: 98%;
+height:60px;
+font-size: 1em;
+text-transform: lowercase;
+padding-left: 20px;
+padding-top: 20px;
+
+}
+
+
+
+
+/*
+ * Ocultar siendo accesible los checkbox
+ */
+.custom-radio, .custom-checkbox {
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
+  	 width:30%;
+}
+
+
+/*
+ * Dejar espacio a la 'label' para posicionar el checkbox hecho con pseudoelementos
+ */
+.custom-checkbox + label {
+  position: relative;
+  padding-left: 60px;
+  padding-top: 28px;
+
+}
+/*
+ * El pseudoelemento que emulará el input checkbox
+ */
+.custom-checkbox + label:before {
+    content: "";
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    /*font-size: 18px;*/
+    width: 48px;
+    height: 48px;
+    line-height: 11px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -6.5px;
+    background: white;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
+    background-image: -webkit-linear-gradient(#ffffff, #dddddd);
+    background-image: -moz-linear-gradient(#ffffff, #dddddd);
+    background-image: -o-linear-gradient(#ffffff, #dddddd);
+    background-image: linear-gradient(#ffffff, #dddddd);
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#dddddd);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd')";
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+}
+
+/*
+ * Fondo para cuando se pasa el ratón por encima
+ */
+.custom-checkbox + label:hover:before {
+    background: #fafafa;
+}
+
+/*
+ * Fondo para cuando se está haciendo click
+ * Con filtros para ie9
+ */
+.custom-checkbox + label:active:before {
+    background: #f2f2f2;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
+    background-image: -webkit-linear-gradient(#dddddd, #ffffff);
+    background-image: -moz-linear-gradient(#dddddd, #ffffff);
+    background-image: -o-linear-gradient(#dddddd, #ffffff);
+    background-image: linear-gradient(#dddddd, #ffffff);
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#dddddd, endColorstr=#ffffff);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#ffffff')";
+}
+
+
+
+/*
+ * Estilos focus para la gente que navega con el teclado, etc
+ */
+.custom-checkbox:focus + label:before {
+    outline: 1px dotted;
+}
+
+/* Mostrar imagen de check cuando está chequeada (sólo el checkbox).
+ 
+ */
+.custom-checkbox:checked + label:before {
+    content: url(../img/check.png);
+
+}
+
+
+
+
+/*
+ * Ocultarlo siendo accesible
+ */
+.custom-radio, .custom-checkbox {
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
+  width:30%;
+}
+
+
+/*
+ * Dejar espacio a la 'label' para posicionar el checkbox hecho con pseudoelementos
+ */
+.custom-radio + label, .custom-checkbox + label {
+  position: relative;
+  padding-left: 60px;
+  padding-top: 28px;
+
+}
+/*
+ * El pseudoelemento que emulará el input
+ */
+.custom-radio + label:before, .custom-checkbox + label:before {
+    content: "";
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    /*font-size: 18px;*/
+    width: 48px;
+    height: 48px;
+    line-height: 11px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -6.5px;
+    background: white;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
+    background-image: -webkit-linear-gradient(#ffffff, #dddddd);
+    background-image: -moz-linear-gradient(#ffffff, #dddddd);
+    background-image: -o-linear-gradient(#ffffff, #dddddd);
+    background-image: linear-gradient(#ffffff, #dddddd);
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#dddddd);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd')";
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+}
+/*
+ * Fondo para cuando se pasa el ratón por encima
+ */
+.custom-radio + label:hover:before, .custom-checkbox + label:hover:before {
+    background: #fafafa;
+}
+
+/*
+ * Fondo para cuando se está haciendo click
+ * Con filtros para ie9
+ */
+.custom-radio + label:active:before, .custom-checkbox + label:active:before {
+    background: #f2f2f2;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
+    background-image: -webkit-linear-gradient(#dddddd, #ffffff);
+    background-image: -moz-linear-gradient(#dddddd, #ffffff);
+    background-image: -o-linear-gradient(#dddddd, #ffffff);
+    background-image: linear-gradient(#dddddd, #ffffff);
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#dddddd, endColorstr=#ffffff);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#ffffff')";
+}
+
+/*
+ * Redondear el botón "radio"
+ * Sobreescribimos el border-radius: 3px general
+ */
+.custom-radio + label:before {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+/*
+ * Mostrar un punto cuando está seleccionado el "radio"
+ * Usamos box-shadow para simular un fondo gris, mientras que dejamos un pequeño 
+ * espacio para el punto negro (#444), que es el fondo
+ */
+.custom-radio:checked + label:before {
+    background: #444;
+    -webkit-box-shadow: 0 0 0 3px #eeeeee inset;
+    -moz-box-shadow: 0 0 0 3px #eeeeee inset;
+    box-shadow: 0 0 0 3px #eeeeee inset;
+}
+
+/*
+ * Estilos focus para la gente que navega con el teclado, etc
+ */
+.custom-radio:focus + label:before,
+.custom-checkbox:focus + label:before {
+    outline: 1px dotted;
+}
+
+/* Mostrar la imagen de check cuando está chequeada (sólo el checkbox).
+ * Podríamos usar una fuente de iconos para mostrar un tic
+ */
+.custom-checkbox:checked + label:before {
+    content: url(../img/check.png);
+}
+
+/*media query para dispositivos de alta resolucion*/ 
+
+@media (min-resolution: 192dpi) { 
+
+	form#fListado select {
+	width: 98%;
+	color: #78cd6a;
+	background-color: #E6EBE7;
+	margin-top: 40px;
+	font-size: 1.6em;
+	
+}	
+	
+	
+	#checkbox_etiquetas,#checkbox_etiquetas2{
+
+		width: 98%;
+		height:60px;
+		font-size: 0.8em;
+		text-transform: lowercase;
+		padding-left: 5px;
+		padding-top: 20px;
+
+	}
+
+			/*
+		 * Dejar espacio a la 'label' para posicionar el checkbox hecho con pseudoelementos
+		 */
+		.custom-checkbox + label {
+		  position: relative;
+		  padding-left: 38px;
+		  padding-top: 28px;
+		
+		}
+		/*
+		 * El pseudoelemento que emulará el input checkbox
+		 */
+		.custom-checkbox + label:before {
+		    content: "";
+		    display: inline-block;
+		    -moz-box-sizing: border-box;
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		    font-weight: bold;
+		    /*font-size: 18px;*/
+		    width: 32px;
+		    height: 32px;
+		    line-height: 11px;
+		    text-align: center;
+		    position: absolute;
+		    left: 0;
+		    top: 50%;
+		    margin-top: -6.5px;
+		    background: white;
+		    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
+		    background-image: -webkit-linear-gradient(#ffffff, #dddddd);
+		    background-image: -moz-linear-gradient(#ffffff, #dddddd);
+		    background-image: -o-linear-gradient(#ffffff, #dddddd);
+		    background-image: linear-gradient(#ffffff, #dddddd);
+		    zoom: 1;
+		    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#dddddd);
+		    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd')";
+		    -webkit-border-radius: 3px;
+		    -moz-border-radius: 3px;
+		    -ms-border-radius: 3px;
+		    -o-border-radius: 3px;
+		    border-radius: 3px;
+		    border: 1px solid #aaa;
+		}
+
+
+}
+
+
+/*  FICHA COMERCIO */
+
+
+#comercio_nombre{
+
+width: 60%;
+float: left;
+padding-top: 30px;
+
+}
+
+.circles{
+
+	margin-top: 15px;
+	height: 50px;
+	float: left;
+	width: 35%;
+
+}
+
+.circle_alimentacion{
+	
+	background: url(../img/alimentacion_circle.png) no-repeat;
+
+}
+
+.circle_ropa{
+	
+	background: url(../img/ropa_circle.png) no-repeat;
+
+}
+
+.circle_artesania{
+	
+	background: url(../img/artesania_circle.png) no-repeat;
+
+}
+
+.circle_bares{
+	
+	background: url(../img/bares_circle.png) no-repeat;
+
+}
+
+.circle_ferias{
+	
+	background: url(../img/ferias_circle.png) no-repeat;
+
+}
+
+.circle_oficina{
+	
+	background: url(../img/oficina_circle.png) no-repeat;
+
+}
+
+.circle_limpieza{
+	
+	background: url(../img/limpieza_circle.png) no-repeat;
+
+}
+
+.circle_otros{
+	
+	background: url(../img/otros_circle.png) no-repeat;
+
+}
+
+
+
+/*
+ * Sólo para IE 6, 7 y 8 (no soportado)
+ */
+@media \0screen\,screen\9 {
+    .custom-radio,
+    .custom-checkbox {
+        clip: auto;
+        position: static;
+    }
+
+    .custom-radio + label,
+    .custom-checkbox + label {
+        padding-left: 0;
+    }
+
+    .custom-radio + label:before,
+    .custom-checkbox + label:before {
+        display: none;
+    }
+}
