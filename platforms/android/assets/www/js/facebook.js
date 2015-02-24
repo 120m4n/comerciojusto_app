@@ -15,7 +15,7 @@ var facebook = {
 				//~ alert(JSON.stringify(response))
 				console.log(response.status);
 				if (response.status == "connected") { 
-					console.log("Estamos logeados");
+					console.log("Estamos logeados: "+response.status);
 					$("#facebook_div").html('Di que te gusta <span id="megusta" class="ion-thumbsup" ></span> o Compartelo <span id="compartir" class="ion-android-share" ></span>');
 					$("#megusta").click( function() {facebook.like();});
 					$("#compartir").click( function() {facebook.share();});
@@ -27,7 +27,7 @@ var facebook = {
 			},
 			function (response) { 
 				console.log("Ha ido mal");
-				alert(JSON.stringify(response)) 
+				console.log(JSON.stringify(response)) 
 			}
 		);
 		
@@ -86,8 +86,8 @@ var facebook = {
 		    caption: "Estoy usando la APP de consumo responsable."
 		}
 		facebookConnectPlugin.showDialog( opciones,
-			function (response) { alert(JSON.stringify(response)) },
-			function (response) { alert(JSON.stringify(response)) }
+			function (response) { console.log(JSON.stringify(response)) },
+			function (response) { console.log(JSON.stringify(response)) }
 		);
 	},
 	getAccessToken: function () {
@@ -105,8 +105,8 @@ var facebook = {
 	
 	logout: function () {
 		facebookConnectPlugin.logout(
-			function (response) { alert(JSON.stringify(response)) },
-			function (response) { alert(JSON.stringify(response)) }
+			function (response) { console.log(JSON.stringify(response)) },
+			function (response) { console.log(JSON.stringify(response)) }
 		);
 	},
 	
