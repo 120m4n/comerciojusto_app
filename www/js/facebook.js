@@ -16,8 +16,9 @@ var facebook = {
 				console.log(response.status);
 				if (response.status == "connected") { 
 					console.log("Estamos logeados");
-					$("#facebook_div").html('Di que <span class="ion-thumbsup" ></span>');
-					$("#facebook_div").click( function() {facebook.like();});
+					$("#facebook_div").html('Di que te gusta <span id="megusta" class="ion-thumbsup" ></span> o Compartelo <span id="compartir" class="ion-android-share" ></span>');
+					$("#megusta").click( function() {facebook.like();});
+					$("#compartir").click( function() {facebook.share();});
 				} else {
 					console.log("No Estamos logeados, mostramos el icono de hacer login")
 					$("#facebook_div").html('Entra en <span class="ion-social-facebook"></span>');
@@ -58,7 +59,7 @@ var facebook = {
 		facebookConnectPlugin.getAccessToken(
 			function (token) { 
 				console.log("Tenemos el token:");
-				URL_TO_LIKE="http://www.etxea.net";
+				URL_TO_LIKE="http://consumoresponsable.info/";
 				URL_TO_POST="https://graph.facebook.com/me/og.likes?access_token="+token+"&object="+URL_TO_LIKE
 				console.log("Lanzmaos el post a:" + URL_TO_POST)
 				console.log(JSON.stringify(token));
@@ -78,10 +79,15 @@ var facebook = {
 		);
 		
 	},
-	showDialog: function () {
-		facebookConnectPlugin.showDialog( { method: "feed" },
-			function (response) { alert(JSON.stringify(response)) },
-			function (response) { alert(JSON.stringify(response)) }
+	share: function () {
+		console.log("Vamos a compartir en el muro");
+		opciones = { method: "feed", 
+			link: "http://consumoresponsable.info/",
+		    caption: "Estoy usando la APP de consumo responsable."
+		}
+		facebookConnectPlugin.showDialog( opciones,
+			function (response) { console.log(JSON.stringify(response)) },
+			function (response) { console.log(JSON.stringify(response)) }
 		);
 	},
 	getAccessToken: function () {
