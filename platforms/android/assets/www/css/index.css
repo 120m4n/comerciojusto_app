@@ -615,6 +615,77 @@ padding-top: 20px;
     content: url(../img/check.png);
 }
 
+
+/* smartphones de resoluciones de 320*480 */
+@media screen and (min-width : 320px) and (max-width : 480px) { 
+	
+	  form#fListado select {
+			width: 98%;
+			color: #78cd6a;
+			background-color: #E6EBE7;
+			margin-top: 40px;
+			font-size: 1.6em;
+			
+		}
+		
+		#checkbox_etiquetas,#checkbox_etiquetas2{
+		
+		width: 98%;
+		height:60px;
+		font-size: 0.6em;
+		text-transform: lowercase;
+		padding-left: 20px;
+		padding-top: 20px;
+		
+		}
+		
+		.custom-radio + label, .custom-checkbox + label {
+		  position: relative;
+		  padding-left: 40px;
+		  padding-top: 28px;
+		
+		}
+		/*
+		 * El pseudoelemento que emulará el input
+		 */
+		.custom-radio + label:before, .custom-checkbox + label:before {
+		    content: "";
+		    display: inline-block;
+		    -moz-box-sizing: border-box;
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		    font-weight: bold;
+		    /*font-size: 18px;*/
+		    width: 32px;
+		    height: 32px;
+		    line-height: 11px;
+		    text-align: center;
+		    position: absolute;
+		    left: 0;
+		    top: 50%;
+		    margin-top: -6.5px;
+		    background: white;
+		    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
+		    background-image: -webkit-linear-gradient(#ffffff, #dddddd);
+		    background-image: -moz-linear-gradient(#ffffff, #dddddd);
+		    background-image: -o-linear-gradient(#ffffff, #dddddd);
+		    background-image: linear-gradient(#ffffff, #dddddd);
+		    zoom: 1;
+		    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#dddddd);
+		    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd')";
+		    -webkit-border-radius: 3px;
+		    -moz-border-radius: 3px;
+		    -ms-border-radius: 3px;
+		    -o-border-radius: 3px;
+		    border-radius: 3px;
+		    border: 1px solid #aaa;
+		}
+    
+}
+
+
+
 /*media query para dispositivos de alta resolucion*/ 
 
 @media (min-resolution: 192dpi) { 

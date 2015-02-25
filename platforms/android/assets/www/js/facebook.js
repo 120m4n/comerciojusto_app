@@ -86,8 +86,8 @@ var facebook = {
 		    caption: "Estoy usando la APP de consumo responsable."
 		}
 		facebookConnectPlugin.showDialog( opciones,
-			function (response) { alert(JSON.stringify(response)) },
-			function (response) { alert(JSON.stringify(response)) }
+			function (response) { console.log(JSON.stringify(response)) },
+			function (response) { console.log(JSON.stringify(response)) }
 		);
 	},
 	getAccessToken: function () {
