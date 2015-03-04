@@ -12,6 +12,14 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
+    <splash density="land-hdpi" src="res/screen.png" />
+    <splash density="land-ldpi" src="res/screen.png" />
+    <splash density="land-mdpi" src="res/screen.png" />
+    <splash density="land-xhdpi" src="res/screen.png" />
+    <splash density="port-hdpi" src="res/screen-port.png" />
+    <splash density="port-ldpi" src="res/screen-port.png" />
+    <splash density="port-mdpi" src="res/screen-port.png" />
+    <splash density="port-xhdpi" src="res/screen-port.png" />
     <name>Callejero Responsable Gasteiz</name>
     <description>
         Aplicación con callejero para conocer los comercios que promueven el consumo responsable en Vitoria/Gasteiz, Alava.
