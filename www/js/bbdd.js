@@ -190,22 +190,22 @@ var bbdd = {
 					console.log("Añadimos las etiquetas");
 					if(comercio.etiqueta_1 == 1){
 						console.log("Añadimos span con clase tLocal");
-					   $("#ficha_info_grafica").append("<span class='tLocal'>local</span>");
+					   $("#ficha_info_grafica").append("<p class='tLocal'><span >local</span></p>");
 					}
 					if(comercio.etiqueta_2 == 1){	
-					   $("#ficha_info_grafica").append("<span class='tEcologico'>ecologico</span>");
+					   $("#ficha_info_grafica").append("<p class='tEcologico'><span >ecologico</span></p>");
 					}	
 					if(comercio.etiqueta_3 == 1){
-					   $("#ficha_info_grafica").append("<span class='tComercio'>comercio</span>");
+					   $("#ficha_info_grafica").append("<p class='tComercio'><span >comercio</span></p>");
 					}	
 					if(comercio.etiqueta_4 == 1){
-					   $("#ficha_info_grafica").append("<span class='tSegunda'>segunda</span>");
+					   $("#ficha_info_grafica").append("<p class='tSegunda'><span >segunda</span></p>");
 					}	
 					if(comercio.etiqueta_5 == 1){
-					   $("#ficha_info_grafica").append("<span class='tReparar'>reparar</span>");
+					   $("#ficha_info_grafica").append("<p class='tReparar'><span >reparar</span></p>");
 					}				
 					if(comercio.etiqueta_6 == 1){
-					   $("#ficha_info_grafica").append("<span class='tMujer'>mujer</span>");
+					   $("#ficha_info_grafica").append("<p class='tMujer'><span >mujer</span></p>");
 					}	
 					console.log("Ponemos la categoria");
 					switch(comercio.categoria) {
