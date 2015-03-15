@@ -828,6 +828,28 @@ font-weight: bold;
 
 }
 
+#facebook_div{
+
+color:#3b5998;
+
+}
+
+#facebook_div img.facebook-login{
+
+padding-top: 20px;
+padding-left: 5px;
+padding-right: 5px;
+
+}
+
+#facebook_div #megusta{
+
+padding-top: 10px;
+padding-bottom: 25px;	
+
+}
+
+
 #ficha_info_grafica{
 
 	

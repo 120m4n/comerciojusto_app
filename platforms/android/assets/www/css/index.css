@@ -769,7 +769,7 @@ padding-top: 20px;
 width: 100%;
 float: left;
 padding-top: 30px;
-padding-left: 5px;
+padding-left: 10px;
 font-size: 1.2em;
 font-weight: bold;
 
@@ -827,6 +827,28 @@ font-weight: bold;
 	background: url(../img/otros_circle.png) no-repeat 10px 10px;
 
 }
+
+#facebook_div{
+
+color:#3b5998;
+
+}
+
+#facebook_div img.facebook-login{
+
+padding-top: 20px;
+padding-left: 5px;
+padding-right: 5px;
+
+}
+
+#facebook_div #megusta{
+
+padding-top: 10px;
+padding-bottom: 25px;	
+
+}
+
 
 #ficha_info_grafica{
 
