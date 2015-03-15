@@ -854,6 +854,18 @@ font-weight: bold;
 
 }
 
+#ficha_comercio_direccion,#ficha_comercio_telefono,#ficha_ver_comercio_mapa{
+
+	padding-left: 20px;
+}
+
+#ficha_ver_comercio_mapa span{
+	
+	color:blue;
+	text-decoration: underline;
+
+}
+
 #ficha_info_grafica p.tLocal{
 
 		background: url(../img/local.png) no-repeat;	
