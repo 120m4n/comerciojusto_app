@@ -201,12 +201,12 @@
 	  <ons-list-header>Ficha comercio</ons-list-header>
 	  <form id="mail">
 	  <ons-list-item>
-	  		<label>Email</label>
-				<input type="email" name="email" id="email" required />
+	  		<p><label class="primeracaja">Email</label>
+				<input class="cajas" type="email" name="email" id="email" required /></p>
 	  </ons-list-item>
 	  <ons-list-item>
 	  		<label>Asunto</label>
-				<input type="text" name="asunto" id="asunto" required />
+				<input class="cajas" type="text" name="asunto" id="asunto" required />
 	  </ons-list-item>
 	  <ons-list-item>
 	  		<label>Mensaje</label>
@@ -265,9 +265,9 @@ nuestras cosas reciclando o reparando.
 				<p><img src="img/mujer.png"><span>Mujer:</span>Queremos visibilizar aquellas iniciativas que son impulsadas por mujeres.
 				</p>
 			</div>
-			<h2>Facebook</h2>
+			<!--<h2>Facebook</h2>-->
 			<div id="facebook_div"></div>
-			<div>Desconectar de facebook <span class="ion-log-out" onclick="facebook.logout()"></span></div>
+			<!--<div>Desconectar de facebook <span class="ion-log-out" onclick="facebook.logout()"></span></div>-->
 			<!--
 			<h2>Facebook test</h2>
 			<div class="event listening button" onclick="facebook.login();">Login with Facebook</div>
@@ -296,7 +296,7 @@ nuestras cosas reciclando o reparando.
 	  <ons-list-header>Ficha comercio</ons-list-header>
 	  <div id="comercio_nombre"><span id="ficha_comercio_nombre"></span></div><div id="ficha_info_grafica"></div>
 	  <div id="ficha_tipo_productos"></div>
-	  <ons-list-item><span id="ficha_comercio_direccion"></span><br><span class="localidad">Vitoria-Gasteiz</span>
+	  <ons-list-item><span id="ficha_comercio_direccion"></span><span class="localidad">, Vitoria-Gasteiz</span>
 	  </ons-list-item>
 	  <ons-list-item><span id="ficha_comercio_telefono"></span></ons-list-item>
 	  <ons-list-item><div id="ficha_ver_comercio_mapa">click</div></ons-list-item>

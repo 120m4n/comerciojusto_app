@@ -225,7 +225,6 @@ margin-top: 50px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 
-
 }
 
 #ayuda_cat .info_ali{
@@ -334,6 +333,11 @@ form#mail input{
 
 }
 
+form#mail input.cajas{
+
+	border-top:2px inset #666;
+}
+
 
 form#mail textarea{
 
@@ -343,8 +347,8 @@ form#mail textarea{
 	font-size: 1.5em;
 	border:2px inset;
 	
-
 }
+
 
 form#mail input[type=submit]{
 
@@ -357,7 +361,7 @@ form#mail input[type=submit]{
 	font-size: 1.5em;
 }
 
-form#mail input:focus, form#contacto textarea:focus{
+form#mail input:focus, form#mail textarea:focus{
 
 	border:2px solid #78cd6a;
 
@@ -842,10 +846,9 @@ padding-right: 5px;
 
 }
 
-#facebook_div img.facebook-like{
+#facebook_div #megusta{
 
 padding-top: 10px;
-padding-left: 5px;
 padding-bottom: 25px;	
 
 }
