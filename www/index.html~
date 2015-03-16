@@ -205,8 +205,8 @@
 				<input class="cajas" type="email" name="email" id="email" required /></p>
 	  </ons-list-item>
 	  <ons-list-item>
-	  		<label>Asunto</label>
-				<input class="cajas" type="text" name="asunto" id="asunto" required />
+	  		<p><label>Asunto</label>
+				<input class="cajas" type="text" name="asunto" id="asunto" required /></p>
 	  </ons-list-item>
 	  <ons-list-item>
 	  		<label>Mensaje</label>
