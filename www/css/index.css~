@@ -301,7 +301,7 @@ float: left;
 
 		color:#78cd6a;
 		font-weight: bold;
-		font-size: 1.2em;
+		font-size: 1em;
 		padding-right: 10px;
 		text-transform: uppercase;
 }
@@ -309,7 +309,7 @@ float: left;
 
 #ayuda_clasi p img{
 
-	padding: 10px;
+	padding-right: 5px;
 
 }
 
