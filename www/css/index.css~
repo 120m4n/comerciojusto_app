@@ -86,74 +86,6 @@ body {
     }
 }
 
-/* smartphones de resoluciones de 320*480 */
-@media screen and (max-width: 480px) {
-	
-	  form#fListado select {
-			width: 98%;
-			color: #78cd6a;
-			background-color: #E6EBE7;
-			margin-top: 40px;
-			font-size: 1.6em;
-			
-		}
-		
-		#checkbox_etiquetas,#checkbox_etiquetas2{
-		
-		width: 98%;
-		height:60px;
-		font-size: 0.6em;
-		text-transform: lowercase;
-		padding-left: 20px;
-		padding-top: 20px;
-		
-		}
-		
-		.custom-radio + label, .custom-checkbox + label {
-		  position: relative;
-		  padding-left: 40px;
-		  padding-top: 28px;
-		
-		}
-		/*
-		 * El pseudoelemento que emulará el input
-		 */
-		.custom-radio + label:before, .custom-checkbox + label:before {
-		    content: "";
-		    display: inline-block;
-		    -moz-box-sizing: border-box;
-		    -webkit-box-sizing: border-box;
-		    box-sizing: border-box;
-		    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-		    font-weight: bold;
-		    /*font-size: 18px;*/
-		    width: 32px;
-		    height: 32px;
-		    line-height: 11px;
-		    text-align: center;
-		    position: absolute;
-		    left: 0;
-		    top: 50%;
-		    margin-top: -6.5px;
-		    background: white;
-		    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
-		    background-image: -webkit-linear-gradient(#ffffff, #dddddd);
-		    background-image: -moz-linear-gradient(#ffffff, #dddddd);
-		    background-image: -o-linear-gradient(#ffffff, #dddddd);
-		    background-image: linear-gradient(#ffffff, #dddddd);
-		    zoom: 1;
-		    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#dddddd);
-		    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd')";
-		    -webkit-border-radius: 3px;
-		    -moz-border-radius: 3px;
-		    -ms-border-radius: 3px;
-		    -o-border-radius: 3px;
-		    border-radius: 3px;
-		    border: 1px solid #aaa;
-		}
-    
-}
-
 
 
 h1 {
@@ -274,7 +206,7 @@ margin-top: 50px;
 #info_ayuda h2{
 
 	text-align: center;
-	font-size: 1.6em;
+	font-size: 1.4em;
 	font-weight: bold;
 }
 
@@ -292,7 +224,6 @@ margin-top: 50px;
 
 	padding-top: 10px;
 	padding-bottom: 10px;
-
 
 }
 
@@ -355,8 +286,10 @@ float: left;
 
 #ayuda_clasi p {
 
-		color:black;
+		color:#666;
 		text-transform: lowercase;
+		padding-left: 5px;
+		padding-right: 5px;
 }
 
 #ayuda_clasi p#clasi1 {
@@ -368,7 +301,7 @@ float: left;
 
 		color:#78cd6a;
 		font-weight: bold;
-		font-size: 1.2em;
+		font-size: 1em;
 		padding-right: 10px;
 		text-transform: uppercase;
 }
@@ -376,7 +309,7 @@ float: left;
 
 #ayuda_clasi p img{
 
-	padding: 10px;
+	padding-right: 5px;
 
 }
 
@@ -402,6 +335,16 @@ form#mail input{
 
 }
 
+form#mail input.cajas{
+
+	border-top:2px inset #666;
+}
+
+form#mail label.primeracaja{
+
+	margin-top:20px;
+}
+
 
 form#mail textarea{
 
@@ -411,8 +354,8 @@ form#mail textarea{
 	font-size: 1.5em;
 	border:2px inset;
 	
-
 }
+
 
 form#mail input[type=submit]{
 
@@ -425,7 +368,7 @@ form#mail input[type=submit]{
 	font-size: 1.5em;
 }
 
-form#mail input:focus, form#contacto textarea:focus{
+form#mail input:focus, form#mail textarea:focus{
 
 	border:2px solid #78cd6a;
 
@@ -683,6 +626,77 @@ padding-top: 20px;
     content: url(../img/check.png);
 }
 
+
+/* smartphones de resoluciones de 320*480 */
+@media screen and (min-width : 320px) and (max-width : 480px) { 
+	
+	  form#fListado select {
+			width: 98%;
+			color: #78cd6a;
+			background-color: #E6EBE7;
+			margin-top: 40px;
+			font-size: 1.6em;
+			
+		}
+		
+		#checkbox_etiquetas,#checkbox_etiquetas2{
+		
+		width: 98%;
+		height:60px;
+		font-size: 0.6em;
+		text-transform: lowercase;
+		padding-left: 20px;
+		padding-top: 20px;
+		
+		}
+		
+		.custom-radio + label, .custom-checkbox + label {
+		  position: relative;
+		  padding-left: 40px;
+		  padding-top: 28px;
+		
+		}
+		/*
+		 * El pseudoelemento que emulará el input
+		 */
+		.custom-radio + label:before, .custom-checkbox + label:before {
+		    content: "";
+		    display: inline-block;
+		    -moz-box-sizing: border-box;
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		    font-weight: bold;
+		    /*font-size: 18px;*/
+		    width: 32px;
+		    height: 32px;
+		    line-height: 11px;
+		    text-align: center;
+		    position: absolute;
+		    left: 0;
+		    top: 50%;
+		    margin-top: -6.5px;
+		    background: white;
+		    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
+		    background-image: -webkit-linear-gradient(#ffffff, #dddddd);
+		    background-image: -moz-linear-gradient(#ffffff, #dddddd);
+		    background-image: -o-linear-gradient(#ffffff, #dddddd);
+		    background-image: linear-gradient(#ffffff, #dddddd);
+		    zoom: 1;
+		    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#dddddd);
+		    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd')";
+		    -webkit-border-radius: 3px;
+		    -moz-border-radius: 3px;
+		    -ms-border-radius: 3px;
+		    -o-border-radius: 3px;
+		    border-radius: 3px;
+		    border: 1px solid #aaa;
+		}
+    
+}
+
+
+
 /*media query para dispositivos de alta resolucion*/ 
 
 @media (min-resolution: 192dpi) { 
@@ -763,67 +777,158 @@ padding-top: 20px;
 
 #comercio_nombre{
 
-width: 60%;
+width: 100%;
 float: left;
 padding-top: 30px;
+padding-left: 10px;
+font-size: 1.2em;
+font-weight: bold;
 
 }
 
 .circles{
 
-	margin-top: 15px;
-	height: 50px;
-	float: left;
-	width: 35%;
 
 }
 
 .circle_alimentacion{
 	
-	background: url(../img/alimentacion_circle.png) no-repeat;
+	background: url(../img/alimentacion_circle.png) no-repeat 10px 10px;
 
 }
 
 .circle_ropa{
 	
-	background: url(../img/ropa_circle.png) no-repeat;
+	background: url(../img/ropa_circle.png) no-repeat 10px 10px;
 
 }
 
 .circle_artesania{
 	
-	background: url(../img/artesania_circle.png) no-repeat;
+	background: url(../img/artesania_circle.png) no-repeat 10px 10px;
 
 }
 
 .circle_bares{
 	
-	background: url(../img/bares_circle.png) no-repeat;
+	background: url(../img/bares_circle.png) no-repeat 10px 10px;
 
 }
 
 .circle_ferias{
 	
-	background: url(../img/ferias_circle.png) no-repeat;
+	background: url(../img/ferias_circle.png) no-repeat 10px 10px;
 
 }
 
 .circle_oficina{
 	
-	background: url(../img/oficina_circle.png) no-repeat;
+	background: url(../img/oficina_circle.png) no-repeat 10px 10px;
 
 }
 
 .circle_limpieza{
 	
-	background: url(../img/limpieza_circle.png) no-repeat;
+	background: url(../img/limpieza_circle.png) no-repeat 10px 10px;
 
 }
 
 .circle_otros{
 	
-	background: url(../img/otros_circle.png) no-repeat;
+	background: url(../img/otros_circle.png) no-repeat 10px 10px;
 
+}
+
+#facebook_div{
+
+color:#3b5998;
+
+}
+
+#facebook_div img.facebook-login{
+
+padding-top: 20px;
+padding-left: 5px;
+padding-right: 5px;
+
+}
+
+#facebook_div #megusta{
+
+padding-top: 10px;
+padding-bottom: 25px;	
+
+}
+
+
+#ficha_info_grafica{
+
+	
+	height: 50px;
+	float: left;
+	width: 100%;
+	padding-left: 60px;
+	margin-bottom: 15px;
+}
+
+#ficha_info_grafica p{
+		
+	display:block;
+	width: 32px;
+	height:32px;
+	float:left;
+	margin-left: 10px;
+
+}
+
+#ficha_info_grafica p span{
+		
+	display:none;
+
+}
+
+#ficha_comercio_direccion,#ficha_comercio_telefono,#ficha_ver_comercio_mapa{
+
+	padding-left: 20px;
+}
+
+#ficha_ver_comercio_mapa span{
+	
+	color:blue;
+	text-decoration: underline;
+
+}
+
+#ficha_info_grafica p.tLocal{
+
+		background: url(../img/local.png) no-repeat;	
+}
+
+
+#ficha_info_grafica p.tEcologico{
+
+			background: url(../img/ecologico.png) no-repeat;
+}
+
+#ficha_info_grafica p.tComercio{
+
+			background: url(../img/comercio_justo.png) no-repeat;
+}
+
+#ficha_info_grafica p.tSegunda{
+
+			background: url(../img/segunda_mano.png) no-repeat;
+}
+
+#ficha_info_grafica p.tReparar{
+
+			background: url(../img/reparar_reciclar.png) no-repeat;
+}
+
+#ficha_info_grafica p.tMujer{
+
+			background: url(../img/mujer.png) no-repeat;
+		
 }
 
 

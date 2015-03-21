@@ -16,12 +16,12 @@ var facebook = {
 				console.log(response.status);
 				if (response.status == "connected") { 
 					console.log("Estamos logeados: "+response.status);
-					$("#facebook_div").html('Di que te gusta <span id="megusta" class="ion-thumbsup" ></span> o Compartelo <span id="compartir" class="ion-android-share" ></span>');
+					$("#facebook_div").html('<div id="megusta"><span >Di que te gusta <img class="facebook-like" src="img/fb-like.png"></span> </div><div id="compartir"><span >Compártelo <img  src="img/facebook.png"></span></div>');
 					$("#megusta").click( function() {facebook.like();});
 					$("#compartir").click( function() {facebook.share();});
 				} else {
 					console.log("No Estamos logeados, mostramos el icono de hacer login")
-					$("#facebook_div").html('Entra en <span class="ion-social-facebook"></span>');
+					$("#facebook_div").html('Entra en <img class="facebook-login" src="img/facebook.png">, hazte fan y compártelo');
 					$("#facebook_div").click( function() {facebook.login();});
 				}
 			},

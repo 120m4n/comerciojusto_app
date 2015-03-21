@@ -37,7 +37,7 @@ var mapa = {
 					
 					for (i = 0; i < len; i++) {
 						comercio = results.rows.item(i);
-						if (len=1) {
+						if (len==1) {
 							console.log("geo:"+comercio.latitud+","+comercio.longitud);
 							popup_texto = "<div id='popupmapasolouncomercio'>"+comercio.nombre+" "+comercio.telefono+"<br /><a href='geo:"+comercio.latitud+","+comercio.longitud+"'/>"+comercio.direccion+"</div>";
 						} else {
