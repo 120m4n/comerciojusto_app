@@ -85,6 +85,7 @@ var bbdd = {
 			console.log("JSON Procesado");
 		}).fail(function(jqxhr, textStatus, error) {
 				console.log( "Error descargando el JSON" );
+				alert("Lo sentimos mucho pero no hemos podido descargar la lista de comercios. Compruebe su conexión a Internet e intentelo de nuevo.");
 				var err = textStatus + ", " + error;
 				console.log( "Request Failed: " + err );
 		});
