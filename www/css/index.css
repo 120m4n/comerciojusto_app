@@ -387,6 +387,20 @@ form#mail input:focus, form#mail textarea:focus{
 
 }
 
+#resultado{
+	text-align: center;
+	padding-top: 10px;
+}
+
+.rojo{
+	color: #D61515;
+}
+
+.negro{
+		
+	color:#666;
+}
+
 .desktop_icon {
 	
 	color: #78cd6a;

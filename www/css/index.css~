@@ -196,7 +196,7 @@ h1 {
 .leaflet-popup {
 position: absolute;
 text-align: center;
-top: -100px;
+top: -90px;
 }
 
 /* pagina de información*/
@@ -385,6 +385,20 @@ form#mail input:focus, form#mail textarea:focus{
 	border:2px solid #78cd6a;
 
 
+}
+
+#resultado{
+	text-align: center;
+	padding-top: 10px;
+}
+
+.rojo{
+
+}
+
+.negro{
+		
+	color:#666;
 }
 
 .desktop_icon {

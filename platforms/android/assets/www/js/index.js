@@ -21,10 +21,10 @@ function jsonCallback(json) {
 					console.log(json);
 					
 					if (json.validacion == "ok"){
-					$("#resultado").html("enviado");
+					$("#resultado").html("<span>enviado</span>");
 					}
 					else{
-					$("#resultado").html("todos los campos son obligatorios");
+					$("#resultado").html("<span class='rojo'>todos los campos son obligatorios</span>");
 					}
 				}
 
@@ -115,7 +115,7 @@ var app = {
 				                jsonpCallback:'jsonCallback',
 				                
 				                beforeSend: function () {
-				                        $("#resultado").html("Procesando, espere por favor...");
+				                        $("#resultado").html("<span class='negro'>Procesando, espere por favor...</span>");
 				                }
 				                
 				                
