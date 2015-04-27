@@ -187,6 +187,13 @@ h1 {
 	top: 35px;
 }
 
+
+#popupmapasolouncomercio{
+
+background:blue;
+
+}
+
 /* pagina de información*/
 
 #info_ayuda{
@@ -301,7 +308,7 @@ float: left;
 
 		color:#78cd6a;
 		font-weight: bold;
-		font-size: 1.2em;
+		font-size: 1em;
 		padding-right: 10px;
 		text-transform: uppercase;
 }
@@ -309,7 +316,7 @@ float: left;
 
 #ayuda_clasi p img{
 
-	padding: 10px;
+	padding-right: 5px;
 
 }
 
@@ -842,6 +849,8 @@ font-weight: bold;
 #facebook_div{
 
 color:#3b5998;
+padding-left: 10px;
+padding-bottom: 10px;
 
 }
 
