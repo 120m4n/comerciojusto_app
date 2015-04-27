@@ -190,8 +190,13 @@ h1 {
 
 #popupmapasolouncomercio{
 
-background:blue;
 
+}
+
+.leaflet-popup {
+position: absolute;
+text-align: center;
+top: -100px;
 }
 
 /* pagina de información*/

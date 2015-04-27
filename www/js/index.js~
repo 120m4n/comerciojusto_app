@@ -17,6 +17,17 @@
  * under the License.
  */
 
+function jsonCallback(json) {
+					console.log(json);
+					
+					if (json.validacion == "ok"){
+					$("#resultado").html("enviado");
+					}
+					else{
+					$("#resultado").html("todos los campos son obligatorios");
+					}
+				}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -67,7 +78,7 @@ var app = {
 		//~ console.log("somos post push");
 		var page = app.navi.getCurrentPage();
 		if (page.options.mapa) {
-			app.initializeMap();
+			app.initializeMap(page.options.comercio_id);
 		}
 		if (page.options.listado) {
 			app.refrescarListaComercios();
@@ -79,13 +90,7 @@ var app = {
 		}
 		if (page.options.contacto) {
 					
-				function jsonCallback(json) {
-					console.log(json);
-					
-					if (json.validacion == "ok"){
-					$("#resultado").html("enviado");
-					}
-				}
+				
 				
 				$('#contacto').click(function() {
 					// recolecta los valores que inserto el usuario
@@ -96,6 +101,12 @@ var app = {
 								mensa :$("#mensaje").val()
 				        };
 				        						console.log("leyendo el email"+parametros.email+"y asubnto"+parametros.asunto);
+				        						
+				       
+				        /*if (parametros.email == "" || parametros.asunto == "" || parametros.mensa =="") {
+				       			$("#resultado").html("todos los campos son obligatorios");
+				        }*/
+				        
 				        $.ajax({
 				                data:  parametros,
 				                url:   'http://consumoresponsable.info/app-admin/mailer/contacto.php',
@@ -116,25 +127,12 @@ var app = {
 		if (page.options.ficha) {
 			console.log("Cargamos los datos del comercio: "+page.options.comercio);
 			bbdd.cargarComercio(page.options.comercio);
-			  window.fbAsyncInit = function() {
-			FB.init({
-			  appId      : '371506683014644',
-			  xfbml      : true,
-			  version    : 'v2.1'
-			});
-		  };
-
-		  (function(d, s, id){
-			 var js, fjs = d.getElementsByTagName(s)[0];
-			 if (d.getElementById(id)) {return;}
-			 js = d.createElement(s); js.id = id;
-			 js.src = "//connect.facebook.net/en_US/sdk.js";
-			 fjs.parentNode.insertBefore(js, fjs);
-		   }(document, 'script', 'facebook-jssdk'));
+			console.log("Inicializamos FB");
+			facebook.initialize();  
 		}
 	},
 	// FUNCIONES MAPA //
-	initializeMap: function () {
+	initializeMap: function (comercio_id) {
 		//~ console.log("Iniciamos el mapa");
 		
 		alto = $(window).height()
@@ -148,8 +146,13 @@ var app = {
 		var osm = new L.TileLayer(osmUrl, { attribution: osmAttrib });
 		app.map.setView(new L.LatLng(42.847363,-2.6734835), 13);
 		app.map.addLayer(osm);
-		
-		consulta = "SELECT id_comercio,categoria,nombre,direccion,latitud,longitud,telefono FROM comercios";
+		if (typeof comercio_id == "undefined") {
+			console.log("Buscamos todos los comercios");
+			consulta = "SELECT id_comercio,categoria,nombre,direccion,latitud,longitud,telefono FROM comercios";
+		} else {
+			console.log("Solo vamos a mostrar el comercio con ID"+comercio_id);
+			consulta = "SELECT id_comercio,categoria,nombre,direccion,latitud,longitud,telefono FROM comercios WHERE id_comercio = "+comercio_id+"";
+		}
 		bbdd.db.transaction(function(tx){
 			tx.executeSql(consulta, [],mapa.add_markers,function(tx,error){console.log("Error leyendo de BBDD: "+error.message)});
 		});

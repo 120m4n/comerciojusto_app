@@ -23,6 +23,9 @@ function jsonCallback(json) {
 					if (json.validacion == "ok"){
 					$("#resultado").html("enviado");
 					}
+					else{
+					$("#resultado").html("todos los campos son obligatorios");
+					}
 				}
 
 var app = {
@@ -98,6 +101,12 @@ var app = {
 								mensa :$("#mensaje").val()
 				        };
 				        						console.log("leyendo el email"+parametros.email+"y asubnto"+parametros.asunto);
+				        						
+				       
+				        /*if (parametros.email == "" || parametros.asunto == "" || parametros.mensa =="") {
+				       			$("#resultado").html("todos los campos son obligatorios");
+				        }*/
+				        
 				        $.ajax({
 				                data:  parametros,
 				                url:   'http://consumoresponsable.info/app-admin/mailer/contacto.php',
