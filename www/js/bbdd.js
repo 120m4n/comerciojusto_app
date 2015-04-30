@@ -63,7 +63,7 @@ var bbdd = {
     populateDB: function () {
 		console.log("Cargamos el JSON desde la web");
 		//~ $.getJSON( "js/comercios.json",function( data ) {
-		$.getJSON( "http://pronosticadores.net/json.php",function( data ) {
+		$.getJSON( "http://consumoresponsable.info/app-admin/json.php",function( data ) {
 			console.log("JSON cargado vamos a recorrerlo");
 				$.each( data, function( key,val ) {
 					//~ console.log("Tenemos el key :"+key);
