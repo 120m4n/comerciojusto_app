@@ -16,8 +16,9 @@ var facebook = {
 				console.log(response.status);
 				if (response.status == "connected") { 
 					console.log("Estamos logeados: "+response.status);
-					$("#facebook_div").html('<div id="megusta"><span >Di que te gusta <img class="facebook-like" src="img/fb-like.png"></span> </div><div id="compartir"><span >Compártelo <img  src="img/facebook.png"></span></div>');
-					$("#megusta").click( function() {facebook.like();});
+					/*$("#facebook_div").html('<div id="megusta"><span >Di que te gusta <img class="facebook-like" src="img/fb-like.png"></span> </div><div id="compartir"><span >Compártelo <img  src="img/facebook.png"></span></div>');
+					$("#megusta").click( function() {facebook.like();});*/
+					$("#facebook_div").html('<div id="compartir"><span >Compártelo <img  src="img/facebook.png"></span></div>');
 					$("#compartir").click( function() {facebook.share();});
 				} else {
 					console.log("No Estamos logeados, mostramos el icono de hacer login")
