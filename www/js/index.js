@@ -78,6 +78,9 @@ var app = {
 		//~ console.log("somos post push");
 		var page = app.navi.getCurrentPage();
 		if (page.options.mapa) {
+			app.initializeMap();
+		}
+        if (page.options.mapa_detalle) {
 			app.initializeMap(page.options.comercio_id);
 		}
 		if (page.options.listado) {
@@ -134,14 +137,31 @@ var app = {
 	// FUNCIONES MAPA //
 	initializeMap: function (comercio_id) {
 		//~ console.log("Iniciamos el mapa");
+        alto = $(window).height()
+        alto2 = windowHeight = screen.height; 
+		if (app.map != undefined) {
+            
+            //console.log("Borramos el mapa");
+            //app.map.remove();
+            $("#map_detail").height(alto);
+            console.log("Redimensionado listo");
+        } else {
+            
+            //console.log("Alto ventana: "+alto+" "+alto2);
+            $("#map").height(alto);
+            console.log("Redimensionado listo");
+        }
 		
-		alto = $(window).height()
-		alto2 = windowHeight = screen.height; 
-		console.log("Alto ventana: "+alto+" "+alto2);
-		$("#map").height(alto);
-		//~ console.log("Redimensionado listo");
-		app.map = new L.Map('map');
-		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        
+        if (typeof comercio_id == "undefined") {
+            console.log("Inicializamos el mapa");
+            app.map = new L.Map('map');
+        } else {
+            console.log("Inicializamos el mapa detalle");
+            app.map = new L.Map('map_detail');
+        }
+		
+        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		var osmAttrib = 'Map data © OpenStreetMap contributors';
 		var osm = new L.TileLayer(osmUrl, { attribution: osmAttrib });
 		app.map.setView(new L.LatLng(42.847363,-2.6734835), 13);

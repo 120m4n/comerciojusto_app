@@ -247,7 +247,7 @@ var bbdd = {
 					$("#ficha_comercio_nombre").text(comercio.nombre);
 					$("#ficha_comercio_direccion").text(comercio.direccion);
 					$("#ficha_comercio_telefono").text(comercio.telefono);
-					$("#ficha_ver_comercio_mapa").html('<span onclick="app.navi.pushPage(\'mapa.html\',{ mapa: \'True\',comercio_id: \''+comercio.id_comercio+'\'});" >Ver en el mapa </span>');
+					$("#ficha_ver_comercio_mapa").html('<span onclick="app.navi.pushPage(\'mapa_detalle.html\',{ mapa_detalle: \'True\',comercio_id: \''+comercio.id_comercio+'\'});" >Ver en el mapa </span>');
 				}else{
 					console.log("Sin resultados");
 				}
