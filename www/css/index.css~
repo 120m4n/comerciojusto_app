@@ -163,7 +163,7 @@ h1 {
 	font-size: 1em;
 	text-align: left;
 	background: url(../img/icon_48.png) no-repeat 10px center;
-	padding-left: 70px;
+	padding-left: 70px !important;
 }
 
 .row{
@@ -393,7 +393,7 @@ form#mail input:focus, form#mail textarea:focus{
 }
 
 .rojo{
-
+	color: #D61515;
 }
 
 .negro{
